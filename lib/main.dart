@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'presentation/screens/home/home_screen.dart';
+import 'presentation/screens/home/feed_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My Flutter App',
       theme: ThemeData(primarySwatch: Colors.indigo),
-      home: const HomeScreen(),
+      home: FeedScreen(),
     );
   }
 }
