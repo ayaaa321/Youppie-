@@ -11,49 +11,50 @@ Youppie is a cheerful, all-in-one platform that brings together everything pet o
 /
 Current Features:
 
-Pet Profiles – Create and personalize detailed profiles for your pets.
+Community Feed: Browse and share pet stories, tips, and updates.
 
-Adoption Space – Discover or post pets available for adoption.
+Lost & Found: Report or discover lost and found pets using photos and locations.
 
-Lost & Found – Report lost pets or help reunite found ones with their owners.
+Adoption & Rescue: Post or browse pets available for adoption or rescue.
 
-Community Feed – Share stories, photos, and updates with fellow pet lovers.
+Vet & Shelter Directory: Find trusted vets and shelters by wilaya and area, complete with reviews.
 
-Vets & Shelters – list all the vets and pets shelters with real users reviews and other info
+User Profiles: Showcase pets, manage posts, and track activity.
 
+Guest Mode: Explore the app’s main features without registration to encourage engagement.
 /
 Wishlist Features: we plan on expanding to the following:
 
-AI Recommendations – Smart adoption and service suggestions based on user preferences.
+Pet Health Tracker: Manage vet visits, vaccine records, and reminders.
 
-Pet Health Tracker – Monitor vet visits, vaccines, and reminders.
+AI-Based Recommendations: Receive tailored suggestions for nutrition, enrichment, and activities.
 
-In-App Chat – Smooth, secure communication between users.
+Pet-Sitting and Walking Services: Connect with verified local service providers.
 
-Gamified Badges – Reward active users and encourage engagement.
+Marketplace: Buy and sell pet-related products.
 
-Freelancer Hub – Connect with trusted pet sitters, trainers, and more.
-
-
+Gamification System: Reward active and supportive users with badges and ranks.
 
 /
 Tech Stack
 
-Frontend: Flutter
+Framework: Flutter
 
-Backend: Node.js / Express 
+Language: Dart
 
-Database: MongoDB 
+Backend: Firebase (planned integration)
 
-Design: Pastel-based UI featuring soft greens and yellows for a friendly, warm aesthetic
+State Management: Provider (current)
 
+Database: Cloud Firestore (planned)
+
+Design Language: Pastel UI with green and yellow tones for an inviting and cheerful aesthetic
 
 
 /
 Vision
 
-Youppie aims to make pet care easierm accessible, connected, and fun — a digital space where people and pets can both find what they need and share what they love.
-
+Youppie is built on the belief that pet ownership should be joyful, not overwhelming. By bringing together essential tools and a supportive community, the app aims to transform how Algerian pet owners connect, care, and collaborate — one paw at a time.
 
 
 /
