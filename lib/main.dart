@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'presentation/screens/home/home_screen.dart';
+import 'package:youppie/presentation/screens/home/vets_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,9 +11,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My Flutter App',
+      title: 'Youppie',
       theme: ThemeData(primarySwatch: Colors.indigo),
-      home: const HomeScreen(),
+      home: VetScreen(),
     );
   }
 }
