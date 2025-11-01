@@ -4,7 +4,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Color? textColor;
   final double? fontSize;
-  final FontWeight? fontwheight;
+  final FontWeight? fontWeight;
   final Widget? leading;
   final List<Widget>? actions;
   final Color? backgroundColor;
@@ -15,7 +15,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leading,
     this.textColor,
     this.fontSize,
-    this.fontwheight,
+    this.fontWeight,
     this.actions,
     this.backgroundColor,
     this.height = kToolbarHeight,
@@ -31,7 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             title,
             style: TextStyle(
               color: textColor ?? const Color(0xFF3B3B3A),
-              fontWeight: fontwheight ?? FontWeight.w600,
+              fontWeight: fontWeight ?? FontWeight.w600,
               fontSize: fontSize ?? 20,
             ),
           ),
