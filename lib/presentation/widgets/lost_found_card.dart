@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class PetCard extends StatelessWidget {
+class LostFoundCard extends StatelessWidget {
   final String status;
   final String name;
   final String location;
   final String? imageUrl;
 
-  const PetCard({
+  const LostFoundCard({
     super.key,
     required this.status,
     required this.name,
