@@ -1,62 +1,95 @@
 import 'package:flutter/material.dart';
-import 'package:youppie/presentation/themes/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class CustomBottomNav extends StatelessWidget {
+class AppColors {
+  static const Color green = Color(0xFF5B928C);
+  static const Color metaText = Color(0xFFA0A0A0);
+  static const Color white = Color(0xFFFFFFFF);
+}
+
+class BottomNavBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  const CustomBottomNav({
+  const BottomNavBar({
+    Key? key,
     required this.currentIndex,
     required this.onTap,
-    super.key,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 64,
       decoration: BoxDecoration(
-        color: AppColors.white, // background color
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
+        color: AppColors.white.withOpacity(0.9),
+        border: Border(
+          top: BorderSide(width: 1, color: Colors.grey.withOpacity(0.22)),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withAlpha((0.05 * 255).round()),
-            blurRadius: 20,
-            offset: const Offset(0, -1), // shadow above the nav bar
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 16,
+            offset: const Offset(0, -2),
           ),
         ],
       ),
-
-      child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
-        ),
-        child: BottomNavigationBar(
-          currentIndex:
-              currentIndex, // this will be set when a new tab is tapped
-          onTap: onTap, // handle tab changes
-          backgroundColor: AppColors.white,
-          selectedItemColor: AppColors.green,
-          elevation: 10,
-          unselectedItemColor: AppColors.black,
-          type: BottomNavigationBarType.fixed,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.pets),
-              label: 'Lost/Found',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.local_hospital),
-              label: 'Vets/Shelters',
-            ),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          ],
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          _bottomNavItem(Icons.home, 'Home', 0),
+          _bottomNavItem(Icons.travel_explore, 'Lost & Found', 1),
+          _centerNavAction(),
+          _bottomNavItem(Icons.storefront, 'Vets & Shelters', 2),
+          _bottomNavItem(Icons.person, 'Profile', 3),
+        ],
       ),
+    );
+  }
+
+  Widget _bottomNavItem(IconData icon, String label, int index) {
+    final bool isActive = currentIndex == index;
+
+    return GestureDetector(
+      onTap: () => onTap(index),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            color: isActive ? AppColors.green : AppColors.metaText,
+            size: 26,
+          ),
+          Text(
+            label,
+            style: GoogleFonts.nunito(
+              color: isActive ? AppColors.green : AppColors.metaText,
+              fontSize: 12,
+              fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _centerNavAction() {
+    return Container(
+      width: 48,
+      height: 48,
+      margin: const EdgeInsets.only(bottom: 12),
+      decoration: BoxDecoration(
+        color: AppColors.green,
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.green.withOpacity(0.22),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: const Icon(Icons.add, color: Colors.white, size: 32),
     );
   }
 }
