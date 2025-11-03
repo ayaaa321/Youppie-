@@ -20,10 +20,10 @@ class _FeedScreenState extends State<FeedScreen> {
     return Scaffold(
       appBar: const CustomAppBar(
         title: "Feed",
-        fontwheight: FontWeight.bold,
-        fontSize: 24,
+        
+        
         backgroundColor: AppColors.yellow,
-        textColor: AppColors.black,
+        
       ),
       body: Column(
         children: [
