@@ -85,28 +85,28 @@ class _LostFoundScreenState extends State<LostFoundScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 childAspectRatio: 0.60, // slightly taller to highlight images
                 children: const [
-                  PetCard(
+                  LostFoundCard(
                     status: 'LOST',
                     name: 'Fido',
                     location: 'Algiers',
                     imageUrl:
                         'https://www.davpetlovers.in/cdn/shop/files/golden-retriever-puppy_davpetlovers_1000x1000.jpg?v=1733299208',
                   ),
-                  PetCard(
+                  LostFoundCard(
                     status: 'FOUND',
                     name: 'Whiskers',
                     location: 'Oran',
                     imageUrl:
                         'https://images.unsplash.com/photo-1518791841217-8f162f1e1131',
                   ),
-                  PetCard(
+                  LostFoundCard(
                     status: 'LOST',
                     name: 'Buddy',
                     location: 'Constantine',
                     imageUrl:
                         'assets/images/golden_retriever_lost_page.jpeg',
                   ),
-                  PetCard(
+                  LostFoundCard(
                     status: 'FOUND',
                     name: 'Luna',
                     location: 'Tipaza',
