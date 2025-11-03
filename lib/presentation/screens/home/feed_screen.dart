@@ -20,7 +20,7 @@ class _FeedScreenState extends State<FeedScreen> {
     return Scaffold(
       appBar: const CustomAppBar(
         title: "Feed",
-        fontwheight: FontWeight.bold,
+        fontWeight: FontWeight.bold,
         fontSize: 24,
         backgroundColor: AppColors.yellow,
         textColor: AppColors.black,
@@ -43,7 +43,10 @@ class _FeedScreenState extends State<FeedScreen> {
                   postType: 'Adoption',
                   content:
                       'This is a cat I found near my house. Looking for a loving home!',
-                  imagePath: 'assets/images/cat.jpeg',
+                  imagePath: [
+                    'assets/images/cat.jpeg',
+                    'assets/images/golden_retriever_lost_page.jpeg',
+                  ],
                   likes: 24,
                   comments: 10,
                 ),
@@ -64,7 +67,7 @@ class _FeedScreenState extends State<FeedScreen> {
                   postType: 'Adoption',
                   content:
                       'Roborovski hamsters available for adoption. Very cute and playful!',
-                  imagePath: 'assets/images/hamsters.jpeg',
+                  imagePath: ['assets/images/hamsters.jpeg'],
                   likes: 30,
                   comments: 15,
                 ),

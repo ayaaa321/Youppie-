@@ -7,6 +7,7 @@ import 'presentation/screens/help_and_support/help_and_support.dart';
 import 'presentation/screens/terms_of_service/terms_of_service.dart';
 import 'presentation/screens/privacy_policy/privacy_policy.dart';
 
+import 'package:youppie/presentation/screens/home/feed_screen.dart';
 
 void main() {
   runApp(const MyApp());
