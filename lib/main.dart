@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:youppie/presentation/screens/home/lost_found_screen.dart';
+import 'package:youppie/presentation/screens/home/feed_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Youppie',
       theme: ThemeData(primarySwatch: Colors.indigo),
-      home: LostFoundScreen(),
+      home: FeedScreen(),
     );
   }
 }
