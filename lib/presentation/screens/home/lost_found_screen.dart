@@ -21,10 +21,9 @@ class _LostFoundScreenState extends State<LostFoundScreen> {
     return Scaffold(
       appBar: const CustomAppBar(
         title: "Lost & Found",
-        fontWeight: FontWeight.bold,
-        fontSize: 24,
+        
         backgroundColor: AppColors.yellow,
-        textColor: AppColors.black,
+        
       ),
       body: Column(
         

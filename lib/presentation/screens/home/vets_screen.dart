@@ -22,10 +22,9 @@ class _VetScreenState extends State<VetScreen> {
     return Scaffold(
       appBar: const CustomAppBar(
         title: "Vets & Shelters",
-        fontWeight: FontWeight.bold,
-        fontSize: 24,
+        
         backgroundColor: AppColors.yellow,
-        textColor: AppColors.black,
+        
       ),
       body: Column(
         children: [
