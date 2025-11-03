@@ -2,49 +2,66 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final Color? textColor;
-  final double? fontSize;
-  final FontWeight? fontWeight;
-  final Widget? leading;
-  final List<Widget>? actions;
+  final bool isHome;
+  final bool showBack;
+  final bool showNotification;
+  final VoidCallback? onBack;
+  final VoidCallback? onNotification;
   final Color? backgroundColor;
-  final double height;
 
   const CustomAppBar({
-    required this.title, // Ab app bar must have a title
-    this.leading,
-    this.textColor,
-    this.fontSize,
-    this.fontWeight,
-    this.actions,
+    required this.title,
+    this.isHome = false,
+    this.showBack = false,
+    this.showNotification = true,
+    this.onBack,
+    this.onNotification,
     this.backgroundColor,
-    this.height = kToolbarHeight,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Row(
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              color: textColor ?? const Color(0xFF3B3B3A),
-              fontWeight: fontWeight ?? FontWeight.w600,
-              fontSize: fontSize ?? 20,
-            ),
-          ),
-        ],
-      ),
-      leading: leading,
-      actions: actions,
       backgroundColor: backgroundColor ?? Theme.of(context).colorScheme.primary,
       elevation: 10,
       centerTitle: true,
+
+      leading: showBack
+          ? IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: onBack ?? () => Navigator.pop(context),
+            )
+          : (isHome
+              ? Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: Image.asset(
+                    'assets/images/app_logo.png', 
+                    height: 30,
+                  ),
+                )
+              : null),
+
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Color(0xFF3B3B3A),
+          fontWeight: FontWeight.w600,
+          fontSize: 20,
+        ),
+      ),
+
+      actions: showNotification
+          ? [
+              IconButton(
+                icon: const Icon(Icons.notifications),
+                onPressed: onNotification,
+              )
+            ]
+          : null,
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight); // this is used to set the height of the AppBar
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
