@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:youppie/presentation/themes/colors.dart';
 
-class PostCard extends StatelessWidget {
-  final String username; // poster's name
-  final String userProfilePic; // poster's profile picture path
-  final String timeAgo; // e.g., '2 hours ago'
-  final String postType; //Adoption, general
-  final String content; // post text content
-  final String? imagePath; // optional image
+class PostCard extends StatefulWidget {
+  final String username;
+  final String userProfilePic;
+  final String timeAgo;
+  final String postType;
+  final String content;
+  final List? imagePath;
   final int likes;
   final int comments;
 
@@ -22,10 +22,37 @@ class PostCard extends StatelessWidget {
     this.likes = 0,
     this.comments = 0,
   });
+
   static var postTypeColor = {
     'Adoption': AppColors.green,
     'General': AppColors.darkGreen,
   };
+
+  @override
+  State<PostCard> createState() => _PostCardState();
+}
+
+class _PostCardState extends State<PostCard> {
+  late int likeCount;
+  bool isLiked = false;
+
+  @override
+  void initState() {
+    super.initState();
+    likeCount = widget.likes;
+  }
+
+  void toggleLike() {
+    setState(() {
+      if (isLiked) {
+        likeCount--;
+      } else {
+        likeCount++;
+      }
+      isLiked = !isLiked;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -42,7 +69,7 @@ class PostCard extends StatelessWidget {
                 // Profile picture
                 ClipOval(
                   child: Image.asset(
-                    userProfilePic,
+                    widget.userProfilePic,
                     width: 50,
                     height: 50,
                     fit: BoxFit.cover, // make sure it fills the circle
@@ -53,10 +80,13 @@ class PostCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      username,
+                      widget.username,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Text(timeAgo, style: TextStyle(color: AppColors.grey)),
+                    Text(
+                      widget.timeAgo,
+                      style: TextStyle(color: AppColors.grey),
+                    ),
                   ],
                 ),
                 const Spacer(),
@@ -66,11 +96,13 @@ class PostCard extends StatelessWidget {
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: postTypeColor[postType] ?? AppColors.green,
+                    color:
+                        PostCard.postTypeColor[widget.postType] ??
+                        AppColors.green,
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Text(
-                    postType,
+                    widget.postType,
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),
@@ -79,13 +111,10 @@ class PostCard extends StatelessWidget {
             const SizedBox(height: 10),
 
             // Post content
-            Text(content, maxLines: 2, overflow: TextOverflow.ellipsis),
-            if (content.length > 100) // or some other threshold
+            Text(widget.content, maxLines: 2, overflow: TextOverflow.ellipsis),
+            if (widget.content.length > 100) // or some other threshold
               GestureDetector(
-                onTap: () {
-                  // Expand the post text
-                  // You might need a StatefulWidget for this
-                },
+                onTap: () {},
                 child: const Text(
                   "Read more",
                   style: TextStyle(
@@ -96,9 +125,30 @@ class PostCard extends StatelessWidget {
               ),
 
             // Optional image
-            if (imagePath != null) ...[
+            if (widget.imagePath != null) ...[
               const SizedBox(height: 10),
-              Image.asset(imagePath!),
+              if (widget.imagePath!.length == 1)
+                Image.asset(
+                  widget.imagePath![0],
+                  width: double.infinity,
+                  height: 300,
+                  fit: BoxFit.cover,
+                ),
+              if (widget.imagePath!.length > 1)
+                SizedBox(
+                  height: 300,
+                  width: double.infinity,
+                  child: PageView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: widget.imagePath!.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Image.asset(widget.imagePath![index]),
+                      );
+                    },
+                  ),
+                ),
             ],
 
             const SizedBox(height: 10),
@@ -106,17 +156,23 @@ class PostCard extends StatelessWidget {
             // Bottom row: likes, comments, contact
             Row(
               children: [
-                Icon(Icons.favorite_outline, color: AppColors.green),
+                IconButton(
+                  onPressed: toggleLike,
+                  icon: Icon(
+                    isLiked ? Icons.favorite : Icons.favorite_outline,
+                    color: isLiked ? AppColors.darkGreen : AppColors.green,
+                  ),
+                ),
                 const SizedBox(width: 5),
                 Text(
-                  likes.toString(), //converting the number of likes to string
+                  likeCount.toString(),
                   style: TextStyle(color: AppColors.black),
                 ),
                 const SizedBox(width: 25),
                 Icon(Icons.comment_outlined, color: AppColors.green),
                 const SizedBox(width: 5),
                 Text(
-                  comments.toString(),
+                  widget.comments.toString(),
                   style: TextStyle(color: AppColors.black),
                 ),
                 const SizedBox(width: 25),
