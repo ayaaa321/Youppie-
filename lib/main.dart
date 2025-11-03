@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:youppie/presentation/screens/comments/comments_screen.dart';
+import 'package:youppie/presentation/screens/notifications/notifications_screen.dart';
 import 'package:youppie/presentation/screens/onboarding/onboarding_screen.dart';
 import 'package:youppie/presentation/screens/posts/add_post_screen.dart';
 import 'presentation/themes/theme.dart';
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My Flutter App',
       theme: AppTheme.lightTheme,
-      home: const AddPostScreen(),
+      home:  CommentsScreen(),
     );
   }
 }
