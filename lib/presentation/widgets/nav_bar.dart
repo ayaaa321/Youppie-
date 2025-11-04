@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-class AppColors {
-  static const Color green = Color(0xFF5B928C);
-  static const Color metaText = Color(0xFFA0A0A0);
-  static const Color white = Color(0xFFFFFFFF);
-}
+import 'package:youppie/presentation/themes/colors.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -57,13 +52,13 @@ class BottomNavBar extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: isActive ? AppColors.green : AppColors.metaText,
+            color: isActive ? AppColors.green : AppColors.grey,
             size: 26,
           ),
           Text(
             label,
             style: GoogleFonts.nunito(
-              color: isActive ? AppColors.green : AppColors.metaText,
+              color: isActive ? AppColors.green : AppColors.grey,
               fontSize: 12,
               fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
             ),

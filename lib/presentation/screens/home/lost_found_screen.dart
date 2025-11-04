@@ -21,16 +21,19 @@ class _LostFoundScreenState extends State<LostFoundScreen> {
     return Scaffold(
       appBar: const CustomAppBar(
         title: "Lost & Found",
-        fontWeight: FontWeight.bold,
-        fontSize: 24,
         backgroundColor: AppColors.yellow,
-        textColor: AppColors.black,
+        showBack: true, // if this page can go back
+        showNotification: true, // optional
       ),
       body: Column(
-        
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 0.4, left: 0.4, right: 0.4, top: 10),
+            padding: const EdgeInsets.only(
+              bottom: 0.4,
+              left: 0.4,
+              right: 0.4,
+              top: 10,
+            ),
             child: CustomSearchBar(
               controller: TextEditingController(),
               hint: 'Search for your pet!',
@@ -38,51 +41,41 @@ class _LostFoundScreenState extends State<LostFoundScreen> {
             ),
           ),
 
-          
-              Padding(
-                padding: const EdgeInsets.only(bottom: 0.4, left: 0.4, right: 0.4, top: 10),
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.04,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    
-                      children: [
-                        
-                         FilterButton(
-                          hint: "Type",
-                          options: ['Lost', 'Found'],
-                        
-                        ),
-                        FilterButton(
-                          hint: "Location",
-                          options: ['Algiers', 'Annaba','Oran'],
-                        
-                        ),
-                        FilterButton(
-                          hint: "Date",
-                          options: ['2025', '2024','2023'],
-                        
-                        ),
-                      ],
-                    
-                  
-                  ),
-                ),
-              ),
-            
-            
-         
+          Padding(
+            padding: const EdgeInsets.only(
+              bottom: 0.4,
+              left: 0.4,
+              right: 0.4,
+              top: 10,
+            ),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.04,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
 
-         
+                children: [
+                  FilterButton(hint: "Type", options: ['Lost', 'Found']),
+                  FilterButton(
+                    hint: "Location",
+                    options: ['Algiers', 'Annaba', 'Oran'],
+                  ),
+                  FilterButton(hint: "Date", options: ['2025', '2024', '2023']),
+                ],
+              ),
+            ),
+          ),
+
           Expanded(
-            child: 
-              Padding(padding: const EdgeInsets.only(top: 20),
-              child : 
-                GridView.count(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: GridView.count(
                 crossAxisCount: 2,
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
                 childAspectRatio: 0.60, // slightly taller to highlight images
                 children: const [
                   LostFoundCard(
@@ -103,8 +96,7 @@ class _LostFoundScreenState extends State<LostFoundScreen> {
                     status: 'LOST',
                     name: 'Buddy',
                     location: 'Constantine',
-                    imageUrl:
-                        'assets/images/golden_retriever_lost_page.jpeg',
+                    imageUrl: 'assets/images/golden_retriever_lost_page.jpeg',
                   ),
                   LostFoundCard(
                     status: 'FOUND',
@@ -115,16 +107,15 @@ class _LostFoundScreenState extends State<LostFoundScreen> {
                   ),
                 ],
               ),
-              ),
+            ),
           ),
         ],
       ),
       backgroundColor: AppColors.yellow,
-      bottomNavigationBar: CustomBottomNav(
+      bottomNavigationBar: BottomNavBar(
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
       ),
     );
   }
 }
-  
