@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
       //home: const CreateAccountPage(), //  change to LoginScreen() if needed
       //home: const LoginScreen(),
       //
-      //home: const ProfileScreen(),
-      home: const SettingsScreen(),
+      home: const ProfileScreen(),
+      //home: const SettingsScreen(),
       //home: const  HelpSupportApp(),
       // home: const TermsOfServiceApp(),
       // home: const PrivacyPolicyApp(),
