@@ -145,7 +145,7 @@ class _VetScreenState extends State<VetScreen> {
       ),
       backgroundColor: AppColors.yellow,
 
-      bottomNavigationBar: CustomBottomNav(
+      bottomNavigationBar: BottomNavBar(
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
       ),

@@ -119,7 +119,7 @@ class _LostFoundScreenState extends State<LostFoundScreen> {
         ],
       ),
       backgroundColor: AppColors.yellow,
-      bottomNavigationBar: CustomBottomNav(
+      bottomNavigationBar: BottomNavBar(
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
       ),

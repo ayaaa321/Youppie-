@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+//import 'presentation/terms_of_service/terms_of_service.dart';
+//import 'presentation/privacy_policy/privacy_policy.dart';
+//import 'presentation/help_and_support/help_and_support.dart';
+
+import 'package:youppie/presentation/widgets/nav_bar.dart';
 
 // Color palette as you provided
 class AppColors {
@@ -133,10 +138,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             // Bottom Nav
-            _buildBottomNavBar(context),
+           
+
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavBar(
+  currentIndex: 3, // index of "Profile" or "Settings" tab
+  onTap: (index) {
+    // handle navigation when a user taps a tab
+    print("Tapped index: $index");
+  },
+),
+
     );
   }
 
@@ -311,66 +325,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  Widget _buildBottomNavBar(BuildContext context) {
-    return Container(
-      height: 64,
-      decoration: BoxDecoration(
-        color: AppColors.white.withOpacity(0.9),
-        border: Border(top: BorderSide(width: 1, color: Colors.grey.withOpacity(0.22))),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 16,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _bottomNavItem(Icons.home, 'Home', false),
-          _bottomNavItem(Icons.travel_explore, 'Lost & Found', false),
-          _centerNavAction(),
-          _bottomNavItem(Icons.storefront, 'Vets & Shelters', false),
-          _bottomNavItem(Icons.person, 'Profile', true),
-        ],
-      ),
-    );
-  }
 
-  Widget _centerNavAction() {
-    return Container(
-      width: 48,
-      height: 48,
-      margin: const EdgeInsets.only(bottom: 12),
-      decoration: BoxDecoration(
-        color: AppColors.green,
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.green.withOpacity(0.22),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: const Icon(Icons.add, color: Colors.white, size: 32),
-    );
-  }
+  
 
-  Widget _bottomNavItem(IconData icon, String label, bool active) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(icon, color: active ? AppColors.green : AppColors.metaText, size: 26),
-        Text(
-          label,
-          style: GoogleFonts.nunito(
-              color: active ? AppColors.green : AppColors.metaText,
-              fontSize: 12,
-              fontWeight: active ? FontWeight.bold : FontWeight.normal),
-        )
-      ],
-    );
-  }
+ 
 }

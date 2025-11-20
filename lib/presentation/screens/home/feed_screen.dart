@@ -79,7 +79,7 @@ class _FeedScreenState extends State<FeedScreen> {
 
       backgroundColor: AppColors.yellow,
 
-      bottomNavigationBar: CustomBottomNav(
+      bottomNavigationBar: BottomNavBar(
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
       ),
