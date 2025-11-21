@@ -18,12 +18,12 @@ class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
+      appBar: CustomAppBar(
         title: "Feed",
-        fontwheight: FontWeight.bold,
-        fontSize: 24,
         backgroundColor: AppColors.yellow,
-        textColor: AppColors.black,
+        isHome: true, // if this is the main page
+        showBack: false,
+        showNotification: true,
       ),
       body: Column(
         children: [
@@ -43,7 +43,10 @@ class _FeedScreenState extends State<FeedScreen> {
                   postType: 'Adoption',
                   content:
                       'This is a cat I found near my house. Looking for a loving home!',
-                  imagePath: 'assets/images/cat.jpeg',
+                  imagePath: [
+                    'assets/images/cat.jpeg',
+                    'assets/images/golden_retriever_lost_page.jpeg',
+                  ],
                   likes: 24,
                   comments: 10,
                 ),
@@ -64,7 +67,7 @@ class _FeedScreenState extends State<FeedScreen> {
                   postType: 'Adoption',
                   content:
                       'Roborovski hamsters available for adoption. Very cute and playful!',
-                  imagePath: 'assets/images/hamsters.jpeg',
+                  imagePath: ['assets/images/hamsters.jpeg'],
                   likes: 30,
                   comments: 15,
                 ),
@@ -76,7 +79,7 @@ class _FeedScreenState extends State<FeedScreen> {
 
       backgroundColor: AppColors.yellow,
 
-      bottomNavigationBar: CustomBottomNav(
+      bottomNavigationBar: BottomNavBar(
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
       ),
