@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
       title: 'My Flutter App',
       theme: AppTheme.lightTheme,
       //home: const CreateAccountPage(), //  change to LoginScreen() if needed
-      //home: const LoginScreen(),
       //
       //home: const ProfileScreen(),
       home: const SettingsScreen(),
