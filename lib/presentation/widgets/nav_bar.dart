@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:youppie/presentation/themes/colors.dart';
 
-
-
 class BottomNavBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;

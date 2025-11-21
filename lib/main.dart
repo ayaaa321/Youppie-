@@ -13,8 +13,8 @@ import 'presentation/screens/settings/settings_screen.dart';
 import 'presentation/screens/help_and_support/help_and_support.dart';
 import 'presentation/screens/terms_of_service/terms_of_service.dart';
 import 'presentation/screens/privacy_policy/privacy_policy.dart';
-
-import 'package:youppie/presentation/screens/home/feed_screen.dart';
+import 'package:youppie/presentation/screens/home/adoption_screen.dart';
+import 'package:youppie/presentation/screens/home/vets_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,16 +26,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
-      title: 'My Flutter App',
+      title: 'Youppie',
+      debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       //home: const CreateAccountPage(), //  change to LoginScreen() if needed
-      //
+      //home: const LoginScreen(),
       //home: const ProfileScreen(),
-      home: const SettingsScreen(),
       //home: const  HelpSupportApp(),
-      // home: const TermsOfServiceApp(),
-      // home: const PrivacyPolicyApp(),
-
+      //home: const TermsOfServiceApp(),
+      //home: const LostFoundDetailsScreen(),
+      //home: const AddPetScreen(),
+      //home: const FeedScreen(),
+      //home: const LostFoundDetailsScreen(),
+      //home: const LostFoundScreen(),
+      //home: const MyPetsScreen(),
+      home: const CommentsScreen(),
     );
   } }

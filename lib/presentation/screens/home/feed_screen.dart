@@ -18,12 +18,12 @@ class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
+      appBar: CustomAppBar(
         title: "Feed",
-        
-        
         backgroundColor: AppColors.yellow,
-        
+        isHome: true, // if this is the main page
+        showBack: false,
+        showNotification: true,
       ),
       body: Column(
         children: [
