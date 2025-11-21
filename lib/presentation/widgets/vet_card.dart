@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:youppie/presentation/models/vet_shelter_model.dart';
 import 'package:youppie/presentation/themes/colors.dart';
 
 class VetCard extends StatelessWidget {
-  final String name; // vet name
-  final String rating;
-  final String type; // vet or shelter
-  final String address;
-  final String? status; // open or closed
+  final VetShelterModel center;
 
-  const VetCard({
-    super.key,
-    required this.name,
-    required this.rating,
-    required this.type,
-    required this.address,
-    this.status,
-  });
+  const VetCard({super.key, required this.center});
   static var cardTypeColor = {
     'shelter': AppColors.green,
     'vet': AppColors.darkGreen,
@@ -33,7 +23,7 @@ class VetCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name,
+                  center.name,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -42,9 +32,11 @@ class VetCard extends StatelessWidget {
                 const SizedBox(height: 8),
 
                 Text(
-                  type,
+                  center.type,
                   style: TextStyle(
-                    color: cardTypeColor[type.toLowerCase()] ?? AppColors.grey,
+                    color:
+                        cardTypeColor[center.type.toLowerCase()] ??
+                        AppColors.grey,
                     fontSize: 16,
                   ),
                 ),
@@ -54,7 +46,7 @@ class VetCard extends StatelessWidget {
                     Icon(Icons.star_outline, color: Colors.amber, size: 20),
                     const SizedBox(width: 4),
                     Text(
-                      rating,
+                      center.rating,
                       style: const TextStyle(
                         fontSize: 16,
                         color: AppColors.grey,
@@ -64,15 +56,15 @@ class VetCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  address,
+                  center.address,
                   style: const TextStyle(fontSize: 14, color: AppColors.grey),
                 ),
-                if (status != null) ...[
+                if (center.status != null) ...[
                   const SizedBox(height: 8),
                   Text(
-                    status!,
+                    center.status!,
                     style: TextStyle(
-                      color: status!.toLowerCase() == 'open'
+                      color: center.status!.toLowerCase() == 'open'
                           ? Colors.green
                           : Colors.red,
                       fontSize: 14,

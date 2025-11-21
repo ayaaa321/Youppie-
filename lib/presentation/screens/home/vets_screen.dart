@@ -9,6 +9,7 @@ import 'package:youppie/presentation/themes/colors.dart';
 import 'package:youppie/presentation/widgets/search_bar.dart';
 import 'package:youppie/presentation/widgets/vet_card.dart';
 import 'package:youppie/presentation/widgets/filter_button.dart';
+import 'package:youppie/presentation/models/vet_shelter_model.dart';
 
 // Vet/Shelter data model
 class VetLocation {
@@ -223,29 +224,38 @@ class _VetScreenState extends State<VetScreen> {
   }
 
   Widget _buildListView() {
+    VetShelterModel vet1 = VetShelterModel(
+      id: 1,
+      name: "Happy Paws Vet Clinic",
+      rating: "4.5",
+      type: "vet",
+      address: "123 Main Street, Algiers",
+      status: "Open",
+    );
+
+    VetShelterModel vet2 = VetShelterModel(
+      id: 2,
+      name: "Green Tail Shelter",
+      rating: "4.8",
+      type: "shelter",
+      address: "Bouzareah, Algiers",
+      status: "Closed",
+    );
+
+    VetShelterModel vet3 = VetShelterModel(
+      id: 1,
+      name: "Friendly Vet Hospital",
+      rating: "4.2",
+      type: "vet",
+      address: "SidiAbdAllah, Algiers",
+    );
+
     return ListView(
       padding: const EdgeInsets.all(8),
-      children: const [
-        VetCard(
-          name: "Happy Paws Vet Clinic",
-          rating: "4.5",
-          type: "vet",
-          address: "123 Main Street, Algiers",
-          status: "Open",
-        ),
-        VetCard(
-          name: "Green Tail Shelter",
-          rating: "4.8",
-          type: "shelter",
-          address: "Bouzareah, Algiers",
-          status: "Closed",
-        ),
-        VetCard(
-          name: "Friendly Vet Hospital",
-          rating: "4.2",
-          type: "vet",
-          address: "SidiAbdAllah, Algiers",
-        ),
+      children: [
+        VetCard(center: vet1),
+        VetCard(center: vet2),
+        VetCard(center: vet3),
       ],
     );
   }

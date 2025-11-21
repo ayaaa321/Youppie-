@@ -14,7 +14,7 @@ class AppColors {
 }
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -249,8 +249,8 @@ class _ProfileMenuItem extends StatelessWidget {
     required this.onTap,
     this.trailing,
     this.titleColor,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -313,8 +313,8 @@ class _NavBarItem extends StatelessWidget {
     required this.label,
     this.selected = false,
     required this.onTap,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
