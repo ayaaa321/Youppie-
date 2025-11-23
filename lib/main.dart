@@ -16,6 +16,7 @@ import 'presentation/screens/terms_of_service/terms_of_service.dart';
 import 'presentation/screens/privacy_policy/privacy_policy.dart';
 import 'package:youppie/presentation/screens/home/adoption_screen.dart';
 import 'package:youppie/presentation/screens/home/vets_screen.dart';
+import 'package:youppie/presentation/screens/home/vet_details_screen.dart';
 
 
 void main() {
@@ -31,9 +32,12 @@ class MyApp extends StatelessWidget {
       title: 'Youppie',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
+
       //home: const CreateAccountPage(), //  change to LoginScreen() if needed
       //home: const LoginScreen(),
+
       //home: const ProfileScreen(),
+
       //home: const  HelpSupportApp(),
       //home: const TermsOfServiceApp(),
       //home: const LostFoundDetailsScreen(),
