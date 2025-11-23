@@ -18,12 +18,12 @@ class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: "Feed",
+        fontWeight: FontWeight.bold,
+        fontSize: 24,
         backgroundColor: AppColors.yellow,
-        isHome: true, // if this is the main page
-        showBack: false,
-        showNotification: true,
+        textColor: AppColors.black,
       ),
       body: Column(
         children: [
@@ -79,7 +79,7 @@ class _FeedScreenState extends State<FeedScreen> {
 
       backgroundColor: AppColors.yellow,
 
-      bottomNavigationBar: BottomNavBar(
+      bottomNavigationBar: CustomBottomNav(
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
       ),

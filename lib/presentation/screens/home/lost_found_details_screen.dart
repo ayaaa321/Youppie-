@@ -19,9 +19,10 @@ class _LostFoundDetailsScreenState extends State<LostFoundDetailsScreen> {
     return Scaffold(
       appBar: const CustomAppBar(
         title: "Lost & Found",
+        fontWeight: FontWeight.bold,
+        fontSize: 24,
         backgroundColor: AppColors.yellow,
-        showBack: true, // if you want a back button
-        showNotification: true, // or false if not needed
+        textColor: AppColors.black,
       ),
       backgroundColor: AppColors.yellow,
       body: Center(
@@ -38,7 +39,7 @@ class _LostFoundDetailsScreenState extends State<LostFoundDetailsScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(
+      bottomNavigationBar: CustomBottomNav(
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
       ),

@@ -5,6 +5,7 @@ import 'package:youppie/presentation/widgets/nav_bar.dart';
 import 'package:youppie/presentation/themes/colors.dart';
 import 'package:youppie/presentation/widgets/pet_card.dart';
 
+
 class MyPetsScreen extends StatefulWidget {
   const MyPetsScreen({super.key});
 
@@ -19,10 +20,12 @@ class _MyPetsScreenState extends State<MyPetsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(
+        leading: BackButton(),
         title: "My Pets",
+        fontWeight: FontWeight.bold,
+        fontSize: 24,
         backgroundColor: AppColors.yellow,
-        showBack: true, // replaces the old leading: BackButton()
-        showNotification: true, // optional
+        textColor: AppColors.black,
       ),
       body: Column(
         children: [
@@ -78,9 +81,13 @@ class _MyPetsScreenState extends State<MyPetsScreen> {
           // Add new pet logic
         },
         backgroundColor: AppColors.darkGreen,
-        child: const Icon(Icons.add, color: AppColors.lightYellow, size: 32),
+        child: const Icon(
+          Icons.add,
+          color: AppColors.lightYellow,
+          size: 32,
+        ),
       ),
-      bottomNavigationBar: BottomNavBar(
+      bottomNavigationBar: CustomBottomNav(
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
       ),
