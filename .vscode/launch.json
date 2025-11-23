@@ -1,0 +1,328 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "flutter",
+            "cwd": "AndroidSDK\\flutter",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_module_1",
+            "cwd": "FlutterProjects\\flutter_module_1",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_module_1 (profile mode)",
+            "cwd": "FlutterProjects\\flutter_module_1",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "flutter_module_1 (release mode)",
+            "cwd": "FlutterProjects\\flutter_module_1",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "flutter_application_1",
+            "cwd": "FlutterProjects\\lab4\\flutter_application_1",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_application_1 (profile mode)",
+            "cwd": "FlutterProjects\\lab4\\flutter_application_1",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "flutter_application_1 (release mode)",
+            "cwd": "FlutterProjects\\lab4\\flutter_application_1",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "flutter_application_1",
+            "cwd": "FlutterProjects\\learn-flutter\\flutter_application_1",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_application_1 (profile mode)",
+            "cwd": "FlutterProjects\\learn-flutter\\flutter_application_1",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "flutter_application_1 (release mode)",
+            "cwd": "FlutterProjects\\learn-flutter\\flutter_application_1",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "flutter_application_2",
+            "cwd": "FlutterProjects\\learn-flutter\\flutter_application_2",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "flutter_application_2 (profile mode)",
+            "cwd": "FlutterProjects\\learn-flutter\\flutter_application_2",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "flutter_application_2 (release mode)",
+            "cwd": "FlutterProjects\\learn-flutter\\flutter_application_2",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "Youppie-",
+            "cwd": "Users\\ANIS INFO\\Youppie-",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "Youppie- (profile mode)",
+            "cwd": "Users\\ANIS INFO\\Youppie-",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "Youppie- (release mode)",
+            "cwd": "Users\\ANIS INFO\\Youppie-",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "a11y_assessments",
+            "cwd": "AndroidSDK\\flutter\\dev\\a11y_assessments",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "a11y_assessments (profile mode)",
+            "cwd": "AndroidSDK\\flutter\\dev\\a11y_assessments",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "a11y_assessments (release mode)",
+            "cwd": "AndroidSDK\\flutter\\dev\\a11y_assessments",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "automated_tests",
+            "cwd": "AndroidSDK\\flutter\\dev\\automated_tests",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "automated_tests (profile mode)",
+            "cwd": "AndroidSDK\\flutter\\dev\\automated_tests",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "automated_tests (release mode)",
+            "cwd": "AndroidSDK\\flutter\\dev\\automated_tests",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "bots",
+            "cwd": "AndroidSDK\\flutter\\dev\\bots",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "checks_tool",
+            "cwd": "AndroidSDK\\flutter\\dev\\checks_tool",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "customer_testing",
+            "cwd": "AndroidSDK\\flutter\\dev\\customer_testing",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "devicelab",
+            "cwd": "AndroidSDK\\flutter\\dev\\devicelab",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "forbidden_from_release_tests",
+            "cwd": "AndroidSDK\\flutter\\dev\\forbidden_from_release_tests",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "manual_tests",
+            "cwd": "AndroidSDK\\flutter\\dev\\manual_tests",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "manual_tests (profile mode)",
+            "cwd": "AndroidSDK\\flutter\\dev\\manual_tests",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "manual_tests (release mode)",
+            "cwd": "AndroidSDK\\flutter\\dev\\manual_tests",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "missing_dependency_tests",
+            "cwd": "AndroidSDK\\flutter\\dev\\missing_dependency_tests",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "missing_dependency_tests (profile mode)",
+            "cwd": "AndroidSDK\\flutter\\dev\\missing_dependency_tests",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "missing_dependency_tests (release mode)",
+            "cwd": "AndroidSDK\\flutter\\dev\\missing_dependency_tests",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "packages_autoroller",
+            "cwd": "AndroidSDK\\flutter\\dev\\packages_autoroller",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "snippets",
+            "cwd": "AndroidSDK\\flutter\\dev\\snippets",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "tools",
+            "cwd": "AndroidSDK\\flutter\\dev\\tools",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "tracing_tests",
+            "cwd": "AndroidSDK\\flutter\\dev\\tracing_tests",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "tracing_tests (profile mode)",
+            "cwd": "AndroidSDK\\flutter\\dev\\tracing_tests",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "tracing_tests (release mode)",
+            "cwd": "AndroidSDK\\flutter\\dev\\tracing_tests",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "sdk_library_metadata",
+            "cwd": "dart-sdk\\lib\\_internal\\sdk_library_metadata",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "c2",
+            "cwd": "FlutterProjects\\lab4\\c2\\c2",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "c2 (profile mode)",
+            "cwd": "FlutterProjects\\lab4\\c2\\c2",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "c2 (release mode)",
+            "cwd": "FlutterProjects\\lab4\\c2\\c2",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "prelab",
+            "cwd": "FlutterProjects\\lab4\\prelab1\\prelab",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "prelab (profile mode)",
+            "cwd": "FlutterProjects\\lab4\\prelab1\\prelab",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "prelab (release mode)",
+            "cwd": "FlutterProjects\\lab4\\prelab1\\prelab",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "Youppie-",
+            "cwd": "Users\\ANIS INFO\\Desktop\\Youppie-",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "Youppie- (profile mode)",
+            "cwd": "Users\\ANIS INFO\\Desktop\\Youppie-",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "Youppie- (release mode)",
+            "cwd": "Users\\ANIS INFO\\Desktop\\Youppie-",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

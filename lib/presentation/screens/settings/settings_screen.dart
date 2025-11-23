@@ -5,20 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 //import 'presentation/help_and_support/help_and_support.dart';
 
 import 'package:youppie/presentation/widgets/nav_bar.dart';
-
-// Color palette as you provided
-class AppColors {
-  AppColors._();
-
-  static const Color green = Color(0xFF5B928C); // Primary Accent
-  static const Color yellow = Color(0xFFFFF8E1); // Background
-  static const Color black = Color(0xFF3B3B3A); // Text (neutral)
-  static const Color white = Color(0xFFFFFFFF); // Main white
-  static const Color grey = Color(0xFF535353);
-  static const Color darkGreen = Color(0xFF314C49);
-  static const Color metaText = Color(0xFFA0A0A0);
-  static const Color accentRed = Color(0xFFE57373);
-}
+import 'package:youppie/presentation/themes/colors.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
