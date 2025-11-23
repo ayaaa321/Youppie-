@@ -58,7 +58,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // ✅ Back button — hidden on first screen
                   currentPage > 0
                       ? TextButton(
                           onPressed: () {
@@ -67,21 +66,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               curve: Curves.easeOut,
                             );
                           },
-                          child: const Text("Back",
-                              style: TextStyle(
-                                  fontSize: 18, color: AppColors.darkGreen)),
+                          child: const Text(
+                            "Back",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: AppColors.darkGreen,
+                            ),
+                          ),
                         )
                       : const SizedBox(width: 60),
 
-                  // ✅ Next / Get Started button
                   ElevatedButton(
                     onPressed: () {
                       if (currentPage == 2) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Signup screen coming soon 🚧"),
-                          ),
-                        );
+                        // ✅ Navigate to SignUp
+                        Navigator.pushReplacementNamed(context, '/signup');
                       } else {
                         _controller.nextPage(
                           duration: const Duration(milliseconds: 350),

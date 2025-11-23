@@ -4,29 +4,39 @@ import 'package:image_picker/image_picker.dart';
 import 'package:youppie/presentation/themes/colors.dart';
 
 class UploadPhotosField extends StatefulWidget {
-  const UploadPhotosField({super.key});
+  final List<File>? existingImages; // optional existing images
+
+  const UploadPhotosField({super.key, this.existingImages});
 
   @override
   State<UploadPhotosField> createState() => _UploadPhotosFieldState();
 }
 
 class _UploadPhotosFieldState extends State<UploadPhotosField> {
-  final List<XFile> _images = [];
+  final List<XFile> _newImages = [];
   final ImagePicker _picker = ImagePicker();
+  late List<File> _allImages; // combines existing + newly picked
+
+  @override
+  void initState() {
+    super.initState();
+    _allImages = widget.existingImages ?? [];
+  }
 
   Future<void> pickImages() async {
     final List<XFile> selectedImages = await _picker.pickMultiImage();
 
     if (selectedImages.isNotEmpty) {
       setState(() {
-        _images.addAll(selectedImages);
+        _newImages.addAll(selectedImages);
+        _allImages.addAll(selectedImages.map((x) => File(x.path)));
       });
     }
   }
 
   void removeImage(int index) {
     setState(() {
-      _images.removeAt(index);
+      _allImages.removeAt(index);
     });
   }
 
@@ -35,8 +45,6 @@ class _UploadPhotosFieldState extends State<UploadPhotosField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        
-
         GestureDetector(
           onTap: pickImages,
           child: Container(
@@ -65,16 +73,15 @@ class _UploadPhotosFieldState extends State<UploadPhotosField> {
             ),
           ),
         ),
-
         const SizedBox(height: 12),
 
         // ✅ Image Preview List
-        if (_images.isNotEmpty)
+        if (_allImages.isNotEmpty)
           SizedBox(
             height: 95,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemCount: _images.length,
+              itemCount: _allImages.length,
               separatorBuilder: (_, __) => const SizedBox(width: 10),
               itemBuilder: (context, index) {
                 return Stack(
@@ -82,13 +89,12 @@ class _UploadPhotosFieldState extends State<UploadPhotosField> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.file(
-                        File(_images[index].path),
+                        _allImages[index],
                         width: 80,
                         height: 90,
                         fit: BoxFit.cover,
                       ),
                     ),
-
                     // ❌ Remove Icon
                     Positioned(
                       right: -5,

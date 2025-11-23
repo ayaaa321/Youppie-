@@ -3,6 +3,7 @@ import 'package:youppie/presentation/themes/colors.dart';
 import 'package:youppie/presentation/models/comment_model.dart';
 import 'widgets/comment_card.dart';
 import 'widgets/comment_input_field.dart';
+import 'package:youppie/routes.dart';
 
 class CommentsScreen extends StatefulWidget {
   const CommentsScreen({super.key});
@@ -12,7 +13,13 @@ class CommentsScreen extends StatefulWidget {
 }
 
 class _CommentsScreenState extends State<CommentsScreen> {
-  // sample data - uses same users as notifications for consistency
+  bool isGuest = true;
+
+  CommentModel? _replyTo;
+  String? _replyToUsername;
+
+  final ScrollController _scrollController = ScrollController();
+
   final List<CommentModel> _comments = [
     CommentModel(
       id: 'c1',
@@ -36,6 +43,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
         ),
       ],
     ),
+
     CommentModel(
       id: 'c2',
       userId: 'u3',
@@ -47,13 +55,31 @@ class _CommentsScreenState extends State<CommentsScreen> {
       likedByMe: false,
       replies: [],
     ),
+
+    CommentModel(
+      id: 'c3',
+      userId: 'u2',
+      userName: 'Ghezlene',
+      avatar: 'assets/images/picture.jpeg',
+      text:
+          'Cute! Win n9der nlgah sltp? This is a longer comment to test Read More functionality for guests. This is a longer comment to test Read More functionality for guests. It should be truncated.',
+      timeAgo: '3h',
+      likeCount: 5,
+      likedByMe: false,
+      replies: [
+        CommentModel(
+          id: 'r2',
+          userId: 'u2',
+          userName: 'Amir',
+          avatar: 'assets/images/picture1.jpeg',
+          text: 'Near the central park, saw it today.',
+          timeAgo: '2h',
+          likeCount: 1,
+          likedByMe: false,
+        ),
+      ],
+    ),
   ];
-
-  // reply target state
-  CommentModel? _replyTo; // parent comment
-  String? _replyToUsername;
-
-  final ScrollController _scrollController = ScrollController();
 
   @override
   void dispose() {
@@ -61,8 +87,48 @@ class _CommentsScreenState extends State<CommentsScreen> {
     super.dispose();
   }
 
-  // toggle like for top-level comment or reply
+  // ---------------------------------------------------------------------------
+  // LOGIN POPUP
+  // ---------------------------------------------------------------------------
+  void _showLoginDialog() {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset('assets/images/snoopy_login.png', height: 140),
+            const SizedBox(height: 16),
+            const Text(
+              'Please log in to continue',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(onPressed: () {}, child: const Text("Login")),
+                const SizedBox(width: 10),
+                OutlinedButton(onPressed: () {}, child: const Text("Register")),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ---------------------------------------------------------------------------
+  // LIKE / REPLY / ADD COMMENT
+  // ---------------------------------------------------------------------------
   void _toggleLike({required String commentId, String? parentId}) {
+    if (isGuest) {
+      _showLoginDialog();
+      return;
+    }
+
     setState(() {
       if (parentId == null) {
         final c = _comments.firstWhere((c) => c.id == commentId);
@@ -77,20 +143,15 @@ class _CommentsScreenState extends State<CommentsScreen> {
     });
   }
 
-  // start replying to a parent comment
   void _startReply(CommentModel parent) {
+    if (isGuest) {
+      _showLoginDialog();
+      return;
+    }
+
     setState(() {
       _replyTo = parent;
       _replyToUsername = parent.userName;
-    });
-    Future.delayed(const Duration(milliseconds: 120), () {
-      if (_scrollController.hasClients) {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent + 150,
-          duration: const Duration(milliseconds: 250),
-          curve: Curves.easeOut,
-        );
-      }
     });
   }
 
@@ -101,8 +162,12 @@ class _CommentsScreenState extends State<CommentsScreen> {
     });
   }
 
-  // add a comment or add a reply to a parent
   Future<void> _addComment(String text) async {
+    if (isGuest) {
+      _showLoginDialog();
+      return;
+    }
+
     if (text.trim().isEmpty) return;
 
     final newComment = CommentModel(
@@ -122,61 +187,103 @@ class _CommentsScreenState extends State<CommentsScreen> {
       } else {
         final parentIndex = _comments.indexWhere((c) => c.id == _replyTo!.id);
         if (parentIndex != -1) {
-          _comments[parentIndex].replies = List.from(_comments[parentIndex].replies)
-            ..add(newComment);
-        } else {
-          // fallback
-          _comments.add(newComment);
+          _comments[parentIndex].replies =
+              List.from(_comments[parentIndex].replies)..add(newComment);
         }
-        // reset reply state after adding
         _replyTo = null;
         _replyToUsername = null;
       }
     });
+  }
 
-    // scroll to bottom to show the new comment
-    Future.delayed(const Duration(milliseconds: 120), () {
-      if (_scrollController.hasClients) {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent + 180,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
+  // ---------------------------------------------------------------------------
+  // COMMENTS LIST
+  // ---------------------------------------------------------------------------
+  Widget _buildCommentsList() {
+    final visible = isGuest ? _comments.take(10).toList() : _comments;
+
+    final list = <Widget>[];
+
+    for (final c in visible) {
+      list.add(
+        CommentCard(
+          comment: c,
+          isReply: false,
+          isGuest: isGuest,
+          onLike: () => _toggleLike(commentId: c.id),
+          onReply: () => _startReply(c),
+        ),
+      );
+
+      for (final r in c.replies) {
+        list.add(
+          Padding(
+            padding: const EdgeInsets.only(left: 40),
+            child: CommentCard(
+              comment: r,
+              isReply: true,
+              parentId: c.id,
+              isGuest: isGuest,
+              onLike: () =>
+                  _toggleLike(commentId: r.id, parentId: c.id),
+              onReply: () => _startReply(c),
+            ),
+          ),
         );
       }
-    });
-  }
+    }
 
-  Widget _buildCommentsList() {
-    final List<Widget> widgets = [];
-    for (final c in _comments) {
-      widgets.add(CommentCard(
-        comment: c,
-        isReply: false,
-        onLike: () => _toggleLike(commentId: c.id),
-        onReply: () => _startReply(c),
-      ));
-
-      // render only first-level replies indented under parent
-      if (c.replies.isNotEmpty) {
-        for (final r in c.replies) {
-          widgets.add(
-            Padding(
-              padding: const EdgeInsets.only(left: 40.0),
-              child: CommentCard(
-                comment: r,
-                isReply: true,
-                parentId: c.id,
-                onLike: () => _toggleLike(commentId: r.id, parentId: c.id),
-                onReply: () => _startReply(c),
+    if (isGuest && _comments.length > 10) {
+      list.add(
+        Stack(
+          children: [
+            Column(
+              children: _comments.skip(10).map((c) {
+                return CommentCard(comment: c, isGuest: true);
+              }).toList(),
+            ),
+            Container(
+              color: Colors.white.withOpacity(0.7),
+              padding: const EdgeInsets.all(20),
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset('assets/images/snoopy_login.png', height: 200),
+                  const SizedBox(height: 12),
+                  const Text(
+                    'Login to see more comments',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: _showLoginDialog,
+                        child: const Text("Login"),
+                      ),
+                      const SizedBox(width: 10),
+                      OutlinedButton(
+                        onPressed: _showLoginDialog,
+                        child: const Text("Register"),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-          );
-        }
-      }
+          ],
+        ),
+      );
     }
-    return Column(children: widgets);
+
+    return Column(children: list);
   }
 
+  // ---------------------------------------------------------------------------
+  // BUILD
+  // ---------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -190,26 +297,115 @@ class _CommentsScreenState extends State<CommentsScreen> {
         ),
         title: const Text(
           'Comments',
-          style: TextStyle(color: AppColors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: AppColors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
       ),
-      body: Column(
+
+      // ------------------- FIXED CLEAN BODY -------------------
+      body: Stack(
         children: [
-          Expanded(
-            child: SingleChildScrollView(
-              controller: _scrollController,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: _buildCommentsList(),
+          Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  padding: const EdgeInsets.only(bottom: 120),
+                  child: _buildCommentsList(),
+                ),
+              ),
+
+              // ---------------- COMMENT COMPOSER ----------------
+              Container(
+                color: AppColors.yellow,
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                child: CommentInputField(
+                  replyingToUsername: _replyToUsername,
+                  onCancelReply: _cancelReply,
+                  onSend: (text) async {
+                    await _addComment(text);
+                  },
+                ),
+              ),
+            ],
+          ),
+
+
+// ---------------- GUEST POPUP ----------------
+if (isGuest)
+  Positioned(
+    bottom: 0,
+    left: 0,
+    right: 0,
+    child: Container(
+      height: 60,
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        color: AppColors.yellow.withOpacity(0.75),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // ⚠️ Warning Icon
+          Icon(
+            Icons.warning_amber_rounded,
+            color: AppColors.orange,
+            size: 40,
+          ),
+
+          const SizedBox(width: 8),
+
+          // Text
+          const Text(
+            "Sign in to comment",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontSize: 16,
             ),
           ),
 
-          // bottom fixed input (shows replying state when applicable)
-          CommentInputField(
-            replyingToUsername: _replyToUsername,
-            onCancelReply: _cancelReply,
-            onSend: (text) => _addComment(text),
+          const SizedBox(width: 12),
+
+          // Buttons row
+          Row(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, signin);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.orange.withOpacity(0.74),
+                  foregroundColor: Colors.black,
+                ),
+                child: const Text("Login"),
+              ),
+
+              const SizedBox(width: 8),
+
+              OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.black,
+                  side: BorderSide(
+                    color: AppColors.orange, // 🔥 Updated underline color
+                    width: 1.4,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, signup);
+                },
+                child: const Text("Register"),
+              ),
+            ],
           ),
+        ],
+      ),
+    ),
+  ),
+
         ],
       ),
     );
