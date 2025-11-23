@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:youppie/presentation/themes/colors.dart';
 
-class AppColors {
-  AppColors._();
-  static const Color green = Color(0xFF5B928C);
-  static const Color yellow = Color(0xFFFFF8E1);
-  static const Color black = Color(0xFF3B3B3A);
-  static const Color white = Color(0xFFFFFFFF);
-  static const Color grey = Color(0xFF535353);
-  static const Color darkGreen = Color(0xFF314C49);
-  static const Color lightGreen = Color(0xFFDEE9E8);
-  static const Color lightYellow = Color(0xFFFFFEF9);
-}
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
