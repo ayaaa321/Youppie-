@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:youppie/presentation/screens/comments/comments_screen.dart';
-import 'package:youppie/presentation/screens/notifications/notifications_screen.dart';
-import 'package:youppie/presentation/screens/onboarding/onboarding_screen.dart';
-import 'package:youppie/presentation/screens/posts/add_post_screen.dart';
+//import 'package:youppie/presentation/screens/comments/comments_screen.dart';
+//import 'package:youppie/presentation/screens/notifications/notifications_screen.dart';
+//import 'package:youppie/presentation/screens/onboarding/onboarding_screen.dart';
+//import 'package:youppie/presentation/screens/posts/add_post_screen.dart';
 import 'presentation/themes/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'presentation/screens/home/feed_screen.dart';
@@ -30,9 +30,12 @@ class MyApp extends StatelessWidget {
       title: 'Youppie',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
+
       //home: const CreateAccountPage(), //  change to LoginScreen() if needed
       //home: const LoginScreen(),
+
       //home: const ProfileScreen(),
+
       //home: const  HelpSupportApp(),
       //home: const TermsOfServiceApp(),
       //home: const LostFoundDetailsScreen(),
