@@ -10,6 +10,7 @@ import 'package:youppie/presentation/widgets/search_bar.dart';
 import 'package:youppie/presentation/widgets/vet_card.dart';
 import 'package:youppie/presentation/widgets/filter_button.dart';
 import 'package:youppie/presentation/models/vet_shelter_model.dart';
+import 'vet_details_screen.dart';
 
 // Vet/Shelter data model
 class VetLocation {
@@ -227,35 +228,75 @@ class _VetScreenState extends State<VetScreen> {
     VetShelterModel vet1 = VetShelterModel(
       id: 1,
       name: "Happy Paws Vet Clinic",
-      rating: "4.5",
+      rating: 1,
       type: "vet",
       address: "123 Main Street, Algiers",
       status: "Open",
+      contact: "0123456789",
+      workingHours: "9:00 AM - 6:00 PM",
+      reviewsCount: 10,
     );
 
     VetShelterModel vet2 = VetShelterModel(
       id: 2,
       name: "Green Tail Shelter",
-      rating: "4.8",
+      rating: 4.8,
       type: "shelter",
       address: "Bouzareah, Algiers",
       status: "Closed",
+      contact: "0987654321",
+      workingHours: "10:00 AM - 5:00 PM",
+      pictures: ["assets/images/cat.jpeg", "assets/images/hamsters.jpeg"],
+      reviewsCount: 25,
     );
 
     VetShelterModel vet3 = VetShelterModel(
-      id: 1,
+      id: 3,
       name: "Friendly Vet Hospital",
-      rating: "4.2",
+      rating: 3.2,
       type: "vet",
       address: "SidiAbdAllah, Algiers",
+      status: "Open",
+      contact: "0122334455",
+      workingHours: "8:00 AM - 4:00 PM",
     );
 
     return ListView(
       padding: const EdgeInsets.all(8),
       children: [
-        VetCard(center: vet1),
-        VetCard(center: vet2),
-        VetCard(center: vet3),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => VetDetailsScreen(vet: vet1),
+              ),
+            );
+          },
+          child: VetCard(center: vet1),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => VetDetailsScreen(vet: vet2),
+              ),
+            );
+          },
+          child: VetCard(center: vet2),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => VetDetailsScreen(vet: vet3),
+              ),
+            );
+          },
+          child: VetCard(center: vet3),
+        ),
       ],
     );
   }

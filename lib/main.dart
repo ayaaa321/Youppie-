@@ -37,12 +37,12 @@ class MyApp extends StatelessWidget {
       //home: const TermsOfServiceApp(),
       //home: const LostFoundDetailsScreen(),
       //home: const AddPetScreen(),
-      home: const FeedScreen(),
+      //home: const FeedScreen(),
       //home: const LostFoundDetailsScreen(),
       //home: const LostFoundScreen(),
       //home: const MyPetsScreen(),
       //home: const VetDetailsScreen(),
-      //home: const VetScreen(),
+      home: const VetScreen(),
     );
   }
 }

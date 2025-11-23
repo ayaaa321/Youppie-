@@ -46,7 +46,7 @@ class VetCard extends StatelessWidget {
                     Icon(Icons.star_outline, color: Colors.amber, size: 20),
                     const SizedBox(width: 4),
                     Text(
-                      center.rating,
+                      center.rating.toString(),
                       style: const TextStyle(
                         fontSize: 16,
                         color: AppColors.grey,
@@ -87,7 +87,7 @@ class VetCard extends StatelessWidget {
                       color: AppColors.green,
                     ),
                     onPressed: () {
-                      // Implement map functionality
+                      // Implement phone call functionality
                     },
                   ),
                 ),

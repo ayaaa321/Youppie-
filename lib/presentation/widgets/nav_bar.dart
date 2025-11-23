@@ -35,7 +35,7 @@ class BottomNavBar extends StatelessWidget {
           _bottomNavItem(Icons.home, 'Home', 0),
           _bottomNavItem(Icons.travel_explore, 'Lost & Found', 1),
           _centerNavAction(),
-          _bottomNavItem(Icons.storefront, 'Vets & Shelters', 2),
+          _bottomNavItem(Icons.pets_outlined, 'Vets & Shelters', 2),
           _bottomNavItem(Icons.person, 'Profile', 3),
         ],
       ),
