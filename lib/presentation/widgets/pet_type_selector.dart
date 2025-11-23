@@ -16,7 +16,7 @@ class PetTypeSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
-      value: selectedType,
+      initialValue: selectedType,
       decoration: InputDecoration(
         filled: true,
         fillColor: AppColors.white,
@@ -26,10 +26,7 @@ class PetTypeSelector extends StatelessWidget {
         ),
       ),
       items: petTypes
-          .map((type) => DropdownMenuItem(
-                value: type,
-                child: Text(type),
-              ))
+          .map((type) => DropdownMenuItem(value: type, child: Text(type)))
           .toList(),
       onChanged: (value) => onSelect(value!),
     );

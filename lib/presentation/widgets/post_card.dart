@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:youppie/presentation/themes/colors.dart';
+import 'package:youppie/presentation/screens/comments/comments_screen.dart';
+
+const userid = 1;
 
 class PostCard extends StatefulWidget {
+  final int id;
   final String username;
   final String userProfilePic;
   final String timeAgo;
@@ -13,6 +17,7 @@ class PostCard extends StatefulWidget {
 
   const PostCard({
     super.key,
+    required this.id,
     required this.username,
     required this.userProfilePic,
     required this.timeAgo,
@@ -21,11 +26,17 @@ class PostCard extends StatefulWidget {
     this.imagePath,
     this.likes = 0,
     this.comments = 0,
+    bool expanded = false,
   });
 
   static var postTypeColor = {
-    'Adoption': AppColors.green,
+    'Adoption': AppColors.lightGreen,
     'General': AppColors.darkGreen,
+  };
+
+  static var postTextColor = {
+    'Adoption': AppColors.darkGreen,
+    'General': AppColors.lightGreen,
   };
 
   @override
@@ -35,7 +46,7 @@ class PostCard extends StatefulWidget {
 class _PostCardState extends State<PostCard> {
   late int likeCount;
   bool isLiked = false;
-
+  bool isExpanded = false;
   @override
   void initState() {
     super.initState();
@@ -103,26 +114,103 @@ class _PostCardState extends State<PostCard> {
                   ),
                   child: Text(
                     widget.postType,
-                    style: const TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color:
+                          PostCard.postTextColor[widget.postType] ??
+                          AppColors.green,
+                    ),
                   ),
+                ),
+
+                PopupMenuButton<String>(
+                  color: AppColors.lightYellow,
+                  onSelected: (value) => {
+                    if (value == "edit")
+                      {
+                        //the route to edit post page
+                      }
+                    else if (value == "delete")
+                      {
+                        // to be handeled after we create data base connections
+                      }
+                    else if (value == "report")
+                      {
+                        //the route to report post page
+                      },
+                  },
+                  itemBuilder: (BuildContext context) =>
+                      <PopupMenuEntry<String>>[
+                        if (widget.id == userid)
+                          PopupMenuItem(
+                            value: "edit",
+                            child: Row(
+                              children: [
+                                Text("Edit post"),
+                                Spacer(),
+                                Icon(Icons.edit, color: AppColors.darkYellow),
+                              ],
+                            ),
+                          ),
+                        if (widget.id == userid)
+                          PopupMenuItem(
+                            value: "delete",
+                            child: Row(
+                              children: [
+                                Text("Delete post"),
+                                Spacer(),
+                                Icon(Icons.delete, color: AppColors.darkGreen),
+                              ],
+                            ),
+                          ),
+                        if (widget.id != userid)
+                          PopupMenuItem(
+                            value: "report",
+                            child: Row(
+                              children: [
+                                Text("Report post"),
+                                Spacer(),
+                                Icon(Icons.report, color: AppColors.red),
+                              ],
+                            ),
+                          ),
+                      ],
                 ),
               ],
             ),
             const SizedBox(height: 10),
 
-            // Post content
-            Text(widget.content, maxLines: 2, overflow: TextOverflow.ellipsis),
-            if (widget.content.length > 100) // or some other threshold
-              GestureDetector(
-                onTap: () {},
-                child: const Text(
-                  "Read more",
-                  style: TextStyle(
-                    color: AppColors.green,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+            Text(
+              widget.content.length < 150
+                  ? widget.content
+                  : isExpanded
+                  ? widget.content
+                  : widget.content.substring(0, 100),
+            ),
+            Visibility(
+              visible: (widget.content.length > 150),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isExpanded = !isExpanded;
+                  });
+                },
+                child: isExpanded
+                    ? Text(
+                        "Read less",
+                        style: TextStyle(
+                          color: AppColors.green,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    : Text(
+                        "Read more",
+                        style: TextStyle(
+                          color: AppColors.green,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
               ),
+            ),
 
             // Optional image
             if (widget.imagePath != null) ...[
@@ -163,20 +251,31 @@ class _PostCardState extends State<PostCard> {
                     color: isLiked ? AppColors.darkGreen : AppColors.green,
                   ),
                 ),
-                const SizedBox(width: 5),
                 Text(
                   likeCount.toString(),
                   style: TextStyle(color: AppColors.black),
                 ),
                 const SizedBox(width: 25),
-                Icon(Icons.comment_outlined, color: AppColors.green),
-                const SizedBox(width: 5),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CommentsScreen()),
+                    );
+                  },
+                  icon: Icon(Icons.comment_outlined, color: AppColors.green),
+                ),
                 Text(
                   widget.comments.toString(),
                   style: TextStyle(color: AppColors.black),
                 ),
                 const SizedBox(width: 25),
-                Icon(Icons.share_outlined, color: AppColors.green),
+                IconButton(
+                  onPressed: () {
+                    //navigate to share screen
+                  },
+                  icon: Icon(Icons.share_outlined, color: AppColors.green),
+                ),
                 const Spacer(),
                 ElevatedButton(
                   onPressed: () {},

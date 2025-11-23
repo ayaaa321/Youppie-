@@ -72,9 +72,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
     // for now show snackbar; later navigate to post/comment
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("Opening item — navigation to post coming later"),
-      ),
+      SnackBar(content: Text("Opening item — navigation to post coming later")),
     );
   }
 
@@ -92,10 +90,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           ),
         ),
         const SizedBox(height: 8),
-        ...list.map((n) => NotificationCard(
-              notification: n,
-              onTap: () => _handleTap(n),
-            )),
+        ...list.map(
+          (n) => NotificationCard(notification: n, onTap: () => _handleTap(n)),
+        ),
         const SizedBox(height: 16),
       ],
     );
@@ -122,12 +119,18 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             onPressed: () {
               // mark all as read
               setState(() {
-                for (var n in today) n.isUnread = false;
-                for (var n in yesterday) n.isUnread = false;
-                for (var n in earlier) n.isUnread = false;
+                for (var n in today) {
+                  n.isUnread = false;
+                }
+                for (var n in yesterday) {
+                  n.isUnread = false;
+                }
+                for (var n in earlier) {
+                  n.isUnread = false;
+                }
               });
             },
-          )
+          ),
         ],
       ),
       body: SingleChildScrollView(
