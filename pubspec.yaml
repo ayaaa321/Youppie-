@@ -39,9 +39,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  video_player: ^2.8.3
-  lottie: ^3.3.2
-  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -63,9 +61,6 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/images/app_logo.png
-    - assets/images/logo.jpg
-    - assets/images/welcome_image_stacked.png
     - assets/images/picture.jpeg
     - assets/images/cat.jpeg
     - assets/images/picture1.jpeg
@@ -76,13 +71,9 @@ flutter:
     - assets/images/facebook.png
     - assets/images/girl.png
     - assets/images/golden_retriever_lost_page.jpeg
-    - assets/images/banner.png
     - assets/icons/
     - assets/fonts/
     - assets/animations/
-    - assets/animations/snoopy_walking.mp4
-    - assets/animations/snoopy_eating_peanuts.mp4
-    - assets/animations/banner.mp4
     - assets/images/onboarding/pet1.png
     - assets/images/onboarding/pet2.png
     - assets/images/onboarding/pet3.png

@@ -86,7 +86,7 @@ class _VetScreenState extends State<VetScreen> {
     return _vetLocations.asMap().entries.map((entry) {
       final index = entry.key;
       final vet = entry.value;
-
+      
       return Marker(
         key: ValueKey(index), // Add key to identify marker
         point: vet.position,
@@ -95,7 +95,9 @@ class _VetScreenState extends State<VetScreen> {
         child: GestureDetector(
           onTap: () {
             // Find and toggle the marker by its key
-            final marker = _markers.firstWhere((m) => m.key == ValueKey(index));
+            final marker = _markers.firstWhere(
+              (m) => m.key == ValueKey(index),
+            );
             _popupController.togglePopup(marker);
           },
           child: Icon(
@@ -113,9 +115,10 @@ class _VetScreenState extends State<VetScreen> {
     return Scaffold(
       appBar: const CustomAppBar(
         title: "Vets & Shelters",
+        fontWeight: FontWeight.bold,
+        fontSize: 24,
         backgroundColor: AppColors.yellow,
-        showBack: true, // if this screen should have a back button
-        showNotification: true, // optional
+        textColor: AppColors.black,
       ),
       body: Column(
         children: [
@@ -211,11 +214,13 @@ class _VetScreenState extends State<VetScreen> {
           ),
 
           // Content Area - List or Map
-          Expanded(child: isListView ? _buildListView() : _buildMapView()),
+          Expanded(
+            child: isListView ? _buildListView() : _buildMapView(),
+          ),
         ],
       ),
       backgroundColor: AppColors.yellow,
-      bottomNavigationBar: BottomNavBar(
+      bottomNavigationBar: CustomBottomNav(
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
       ),
@@ -282,7 +287,9 @@ class _VetScreenState extends State<VetScreen> {
                   userAgentPackageName: 'com.example.youppie',
                   maxZoom: 19,
                 ),
-                MarkerLayer(markers: _markers),
+                MarkerLayer(
+                  markers: _markers,
+                ),
                 PopupMarkerLayer(
                   options: PopupMarkerLayerOptions(
                     popupController: _popupController,
@@ -330,7 +337,10 @@ class _VetScreenState extends State<VetScreen> {
                           size: 18,
                         ),
                         const SizedBox(width: 6),
-                        const Text('Vet', style: TextStyle(fontSize: 12)),
+                        const Text(
+                          'Vet',
+                          style: TextStyle(fontSize: 12),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 6),
@@ -343,7 +353,10 @@ class _VetScreenState extends State<VetScreen> {
                           size: 18,
                         ),
                         const SizedBox(width: 6),
-                        const Text('Shelter', style: TextStyle(fontSize: 12)),
+                        const Text(
+                          'Shelter',
+                          style: TextStyle(fontSize: 12),
+                        ),
                       ],
                     ),
                   ],
@@ -367,7 +380,10 @@ class _VetScreenState extends State<VetScreen> {
                       );
                     },
                     backgroundColor: Colors.white,
-                    child: const Icon(Icons.add, color: AppColors.green),
+                    child: const Icon(
+                      Icons.add,
+                      color: AppColors.green,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   FloatingActionButton.small(
@@ -380,7 +396,10 @@ class _VetScreenState extends State<VetScreen> {
                       );
                     },
                     backgroundColor: Colors.white,
-                    child: const Icon(Icons.remove, color: AppColors.green),
+                    child: const Icon(
+                      Icons.remove,
+                      color: AppColors.green,
+                    ),
                   ),
                 ],
               ),
@@ -396,7 +415,10 @@ class _VetScreenState extends State<VetScreen> {
                   _mapController.move(_algiers, 14.0);
                 },
                 backgroundColor: Colors.white,
-                child: const Icon(Icons.my_location, color: AppColors.green),
+                child: const Icon(
+                  Icons.my_location,
+                  color: AppColors.green,
+                ),
               ),
             ),
           ],
@@ -438,7 +460,10 @@ class _VetScreenState extends State<VetScreen> {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: vet.type == 'vet'
                       ? Colors.green.shade100
@@ -463,7 +488,11 @@ class _VetScreenState extends State<VetScreen> {
           // Rating
           Row(
             children: [
-              const Icon(Icons.star, color: Colors.amber, size: 16),
+              const Icon(
+                Icons.star,
+                color: Colors.amber,
+                size: 16,
+              ),
               const SizedBox(width: 4),
               Text(
                 vet.rating,
@@ -489,7 +518,10 @@ class _VetScreenState extends State<VetScreen> {
               Expanded(
                 child: Text(
                   vet.address,
-                  style: TextStyle(fontSize: 12, color: Colors.grey.shade700),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey.shade700,
+                  ),
                 ),
               ),
             ],
