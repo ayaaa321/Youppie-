@@ -16,7 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showNotification = true,
     this.onBack,
     this.onNotification,
-    this.backgroundColor,
+    this.backgroundColor ,
     super.key,
   });
 
@@ -35,10 +35,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           : (isHome
               ? Padding(
                   padding: const EdgeInsets.only(left: 12),
-                  child: Image.asset(
-                    'assets/images/app_logo.png', 
-                    height: 30,
-                  ),
+                  child :Image(image: AssetImage('assets/images/app_logo.png'), height: 30, width: 30,),
+                  
                 )
               : null),
 
