@@ -3,6 +3,7 @@ import 'package:youppie/presentation/screens/comments/comments_screen.dart';
 import 'package:youppie/presentation/screens/notifications/notifications_screen.dart';
 import 'package:youppie/presentation/screens/onboarding/onboarding_screen.dart';
 import 'package:youppie/presentation/screens/posts/add_post_screen.dart';
+import 'package:youppie/presentation/screens/posts/edit_post_screen.dart';
 import 'presentation/themes/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'presentation/screens/home/feed_screen.dart';
@@ -15,6 +16,7 @@ import 'presentation/screens/terms_of_service/terms_of_service.dart';
 import 'presentation/screens/privacy_policy/privacy_policy.dart';
 import 'package:youppie/presentation/screens/home/adoption_screen.dart';
 import 'package:youppie/presentation/screens/home/vets_screen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -40,6 +42,8 @@ class MyApp extends StatelessWidget {
       //home: const LostFoundDetailsScreen(),
       //home: const LostFoundScreen(),
       //home: const MyPetsScreen(),
-      home: const CommentsScreen(),
+    
+      //home: const CommentsScreen(),
+      home: const EditPostScreen(),
     );
   } }
