@@ -38,6 +38,7 @@ class _FeedScreenState extends State<FeedScreen> {
               children: const [
                 PostCard(
                   username: 'Dhoha',
+                  id: 1,
                   userProfilePic: 'assets/images/picture.jpeg',
                   timeAgo: '2 hours ago',
                   postType: 'Adoption',
@@ -52,6 +53,7 @@ class _FeedScreenState extends State<FeedScreen> {
                 ),
                 PostCard(
                   username: 'Aya',
+                  id: 2,
                   userProfilePic: 'assets/images/picture1.jpeg',
                   timeAgo: '5 hours ago',
                   postType: 'General',
@@ -62,6 +64,7 @@ class _FeedScreenState extends State<FeedScreen> {
                 ),
                 PostCard(
                   username: 'Salma',
+                  id: 3,
                   userProfilePic: 'assets/images/picture2.jpeg',
                   timeAgo: '1 day ago',
                   postType: 'Adoption',

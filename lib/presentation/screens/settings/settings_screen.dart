@@ -21,7 +21,7 @@ class AppColors {
 }
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+  const SettingsScreen({super.key});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -45,7 +45,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
             _buildHeader(context),
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 18,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -81,13 +84,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     const SizedBox(height: 8),
                     _buildBlurCard(
                       children: [
-                        _buildSettingsSwitch('Likes', likes, (v) => setState(() => likes = v)),
+                        _buildSettingsSwitch(
+                          'Likes',
+                          likes,
+                          (v) => setState(() => likes = v),
+                        ),
                         _divider(),
-                        _buildSettingsSwitch('Comments', comments, (v) => setState(() => comments = v)),
+                        _buildSettingsSwitch(
+                          'Comments',
+                          comments,
+                          (v) => setState(() => comments = v),
+                        ),
                         _divider(),
-                        _buildSettingsSwitch('New Posts', newPosts, (v) => setState(() => newPosts = v)),
+                        _buildSettingsSwitch(
+                          'New Posts',
+                          newPosts,
+                          (v) => setState(() => newPosts = v),
+                        ),
                         _divider(),
-                        _buildSettingsSwitch('App Updates (Email)', appUpdates, (v) => setState(() => appUpdates = v)),
+                        _buildSettingsSwitch(
+                          'App Updates (Email)',
+                          appUpdates,
+                          (v) => setState(() => appUpdates = v),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 32),
@@ -137,20 +156,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
             ),
-            // Bottom Nav
-           
 
+            // Bottom Nav
           ],
         ),
       ),
       bottomNavigationBar: BottomNavBar(
-  currentIndex: 3, // index of "Profile" or "Settings" tab
-  onTap: (index) {
-    // handle navigation when a user taps a tab
-    print("Tapped index: $index");
-  },
-),
-
+        currentIndex: 3, // index of "Profile" or "Settings" tab
+        onTap: (index) {
+          // handle navigation when a user taps a tab
+          print("Tapped index: $index");
+        },
+      ),
     );
   }
 
@@ -161,9 +178,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
         color: AppColors.yellow.withOpacity(0.95),
         boxShadow: [
           BoxShadow(
-              color: AppColors.black.withOpacity(0.04),
-              blurRadius: 8,
-              offset: const Offset(0, 3))
+            color: AppColors.black.withOpacity(0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 3),
+          ),
         ],
       ),
       child: Column(
@@ -198,24 +216,38 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColors.white.withOpacity(0.8),
-                    contentPadding: const EdgeInsets.symmetric(vertical: 13, horizontal: 48),
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 13,
+                      horizontal: 48,
+                    ),
                     hintText: "Search...",
                     hintStyle: GoogleFonts.nunito(
-                        color: AppColors.metaText, fontSize: 16),
+                      color: AppColors.metaText,
+                      fontSize: 16,
+                    ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(32),
                       borderSide: BorderSide(
-                          color: Colors.grey.withOpacity(0.25), width: 1),
+                        color: Colors.grey.withOpacity(0.25),
+                        width: 1,
+                      ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(32),
-                      borderSide: const BorderSide(color: AppColors.green, width: 1.5),
+                      borderSide: const BorderSide(
+                        color: AppColors.green,
+                        width: 1.5,
+                      ),
                     ),
                   ),
                 ),
                 const Positioned(
                   left: 16,
-                  child: Icon(Icons.search, color: AppColors.metaText, size: 24),
+                  child: Icon(
+                    Icons.search,
+                    color: AppColors.metaText,
+                    size: 24,
+                  ),
                 ),
               ],
             ),
@@ -245,9 +277,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ],
       ),
-      child: Column(
-        children: children,
-      ),
+      child: Column(children: children),
     );
   }
 
@@ -269,10 +299,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Expanded(
             child: Text(
               title,
-              style: GoogleFonts.nunito(
-                fontSize: 16,
-                color: AppColors.black,
-              ),
+              style: GoogleFonts.nunito(fontSize: 16, color: AppColors.black),
             ),
           ),
           Icon(Icons.chevron_right, color: AppColors.metaText),
@@ -281,7 +308,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  Widget _buildSettingsSwitch(String label, bool value, Function(bool) onChanged) {
+  Widget _buildSettingsSwitch(
+    String label,
+    bool value,
+    Function(bool) onChanged,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
       child: Row(
@@ -292,17 +323,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
               style: GoogleFonts.nunito(fontSize: 16, color: AppColors.black),
             ),
           ),
-        Switch(
-  value: value,
-  onChanged: onChanged,
-  activeColor: AppColors.green,
-  inactiveThumbColor: AppColors.metaText,
-  inactiveTrackColor: Colors.grey.withOpacity(0.35),
-  trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
-  //shape: const StadiumBorder(),
-)
-,
-
+          Switch(
+            value: value,
+            onChanged: onChanged,
+            activeThumbColor: AppColors.green,
+            inactiveThumbColor: AppColors.metaText,
+            inactiveTrackColor: Colors.grey.withOpacity(0.35),
+            trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
+            //shape: const StadiumBorder(),
+          ),
         ],
       ),
     );
@@ -324,9 +353,4 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
     );
   }
-
-
-  
-
- 
 }
