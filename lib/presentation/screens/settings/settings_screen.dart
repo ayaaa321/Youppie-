@@ -6,6 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:youppie/presentation/widgets/nav_bar.dart';
 import 'package:youppie/presentation/themes/colors.dart';
+import 'package:youppie/presentation/screens/terms_of_service/terms_of_service.dart';
+import 'package:youppie/presentation/screens/privacy_policy/privacy_policy.dart';
+import 'package:youppie/presentation/screens/help_and_support/help_and_support.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -109,11 +112,45 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     const SizedBox(height: 8),
                     _buildBlurCard(
                       children: [
-                        _buildLegalTile('Terms of Service'),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    TermsOfServiceApp(), // or whatever your page class is called
+                              ),
+                            );
+                          },
+                          child: _buildLegalTile('Terms of Service'),
+                        ),
+
                         _divider(),
-                        _buildLegalTile('Privacy Policy'),
+
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PrivacyPolicyApp(),
+                              ),
+                            );
+                          },
+                          child: _buildLegalTile('Privacy Policy'),
+                        ),
+                        //HelpSupportApp
                         _divider(),
-                        _buildLegalTile('Help & Support'),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HelpSupportApp(),
+                              ),
+                            );
+                          },
+                          child: _buildLegalTile('Help & Support'),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 32),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:youppie/presentation/screens/comments/comments_screen.dart';
+import 'package:youppie/presentation/screens/main_screen.dart';
 import 'package:youppie/presentation/screens/notifications/notifications_screen.dart';
 import 'package:youppie/presentation/screens/onboarding/onboarding_screen.dart';
 import 'package:youppie/presentation/screens/posts/add_post_screen.dart';
@@ -16,6 +17,9 @@ import 'presentation/screens/terms_of_service/terms_of_service.dart';
 import 'presentation/screens/privacy_policy/privacy_policy.dart';
 import 'package:youppie/presentation/screens/home/adoption_screen.dart';
 import 'package:youppie/presentation/screens/home/vets_screen.dart';
+import 'package:youppie/presentation/screens/home/lost_found_details_screen.dart';
+import 'package:youppie/presentation/screens/home/lost_found_screen.dart';
+import 'package:youppie/presentation/screens/home/banner.dart';
 import 'package:youppie/presentation/screens/home/vet_details_screen.dart';
 
 void main() {
@@ -39,15 +43,16 @@ class MyApp extends StatelessWidget {
 
       //home: const  HelpSupportApp(),
       //home: const TermsOfServiceApp(),
-      //home: const LostFoundDetailsScreen(),
       //home: const AddPetScreen(),
-      home: const SettingsScreen(),
-
+      //home: const SettingsScreen(),
+      //home: const FeedScreen(),
       //home: const LostFoundDetailsScreen(),
-      //home: const LostFoundScreen(),
+      //home: const LostFoundDetailsScreen(),
       //home: const MyPetsScreen(),
-
+      home: const MainScreen(),
       //home: const CommentsScreen(),
+      //home: const LostFoundScreen(),
+      //  //home: const GuestFeedScreen(),
     );
   }
 }

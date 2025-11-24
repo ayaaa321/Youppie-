@@ -31,10 +31,14 @@ class TermsOfServiceScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: bgColor,
         elevation: 0,
+
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: primaryColor, size: 28),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
+
         title: const Text(
           "Terms of Service",
           style: TextStyle(
@@ -57,7 +61,7 @@ class TermsOfServiceScreen extends StatelessWidget {
                 color: Colors.grey.shade300,
                 blurRadius: 4,
                 offset: const Offset(0, 2),
-              )
+              ),
             ],
           ),
           child: const Column(
@@ -113,7 +117,10 @@ class TermsOfServiceScreen extends StatelessWidget {
         onTap: (_) {},
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.local_hospital), label: "Vets"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.local_hospital),
+            label: "Vets",
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.groups), label: "Community"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
@@ -183,10 +190,7 @@ class BulletList extends StatelessWidget {
                   children: [
                     const Text(
                       "• ",
-                      style: TextStyle(
-                        color: Color(0xFF333333),
-                        fontSize: 16,
-                      ),
+                      style: TextStyle(color: Color(0xFF333333), fontSize: 16),
                     ),
                     Expanded(
                       child: Text(

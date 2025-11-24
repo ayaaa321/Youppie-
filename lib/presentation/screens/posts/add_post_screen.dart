@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:youppie/presentation/themes/colors.dart';
+import 'package:youppie/presentation/widgets/app_bar.dart';
 import 'package:youppie/presentation/widgets/pet_type_selector.dart';
 import 'package:youppie/presentation/widgets/upload_photos_field.dart';
 import 'package:youppie/presentation/widgets/custom_submit_button.dart';
@@ -24,7 +25,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
     "Bird",
     "Rabbit",
     "Hamster",
-    "Other"
+    "Other",
   ];
 
   final TextEditingController titleController = TextEditingController();
@@ -36,15 +37,11 @@ class _AddPostScreenState extends State<AddPostScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.yellow,
-      appBar: AppBar(
-        title: const Text("Create Post"),
-        elevation: 0,
-        backgroundColor: AppColors.white,
-        foregroundColor: AppColors.black,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-        ),
+      appBar: CustomAppBar(
+        title: "Add Post",
+        isHome: false,
+        showBack: true,
+        showNotification: false,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -62,7 +59,9 @@ class _AddPostScreenState extends State<AddPostScreen> {
                   child: Container(
                     margin: const EdgeInsets.only(right: 10),
                     padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 18),
+                      vertical: 10,
+                      horizontal: 18,
+                    ),
                     decoration: BoxDecoration(
                       color: isSelected ? AppColors.white : AppColors.white,
                       borderRadius: BorderRadius.circular(20),
@@ -76,11 +75,10 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     child: Text(
                       categories[index],
                       style: TextStyle(
-                        color: isSelected
-                            ? AppColors.green
-                            : AppColors.black,
-                        fontWeight:
-                            isSelected ? FontWeight.bold : FontWeight.normal,
+                        color: isSelected ? AppColors.green : AppColors.black,
+                        fontWeight: isSelected
+                            ? FontWeight.bold
+                            : FontWeight.normal,
                       ),
                     ),
                   ),
@@ -120,9 +118,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
             const SizedBox(height: 8),
             TextField(
               controller: titleController,
-              decoration: _inputDecoration(
-                hint: "Enter post title...",
-              ),
+              decoration: _inputDecoration(hint: "Enter post title..."),
             ),
 
             const SizedBox(height: 20),
@@ -140,9 +136,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
             TextField(
               controller: descriptionController,
               maxLines: 5,
-              decoration: _inputDecoration(
-                hint: "Write something...",
-              ),
+              decoration: _inputDecoration(hint: "Write something..."),
             ),
 
             const SizedBox(height: 20),
@@ -220,23 +214,14 @@ class _AddPostScreenState extends State<AddPostScreen> {
   }
 
   // ✅ Improved input style with icons support
-  InputDecoration _inputDecoration({
-    required String hint,
-    IconData? icon,
-  }) {
+  InputDecoration _inputDecoration({required String hint, IconData? icon}) {
     return InputDecoration(
-      prefixIcon: icon != null
-          ? Icon(icon, color: AppColors.grey)
-          : null,
+      prefixIcon: icon != null ? Icon(icon, color: AppColors.grey) : null,
       hintText: hint,
-      hintStyle: const TextStyle(
-        color: AppColors.grey,
-        fontSize: 14,
-      ),
+      hintStyle: const TextStyle(color: AppColors.grey, fontSize: 14),
       filled: true,
       fillColor: AppColors.white,
-      contentPadding:
-          const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+      contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide(
@@ -246,10 +231,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: AppColors.green,
-          width: 1.5,
-        ),
+        borderSide: const BorderSide(color: AppColors.green, width: 1.5),
       ),
     );
   }

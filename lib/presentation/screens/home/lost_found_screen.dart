@@ -21,9 +21,9 @@ class _LostFoundScreenState extends State<LostFoundScreen> {
     return Scaffold(
       appBar: const CustomAppBar(
         title: "Lost & Found",
-        backgroundColor: AppColors.yellow,
-        showBack: true, // if this page can go back
-        showNotification: true, // optional
+        isHome: false,
+        showBack: false, // if this page can go back
+        showNotification: true,
       ),
       body: Column(
         children: [
@@ -112,10 +112,6 @@ class _LostFoundScreenState extends State<LostFoundScreen> {
         ],
       ),
       backgroundColor: AppColors.yellow,
-      bottomNavigationBar: BottomNavBar(
-        currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
-      ),
     );
   }
 }

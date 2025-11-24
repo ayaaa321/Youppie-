@@ -115,8 +115,8 @@ class _VetScreenState extends State<VetScreen> {
     return Scaffold(
       appBar: const CustomAppBar(
         title: "Vets & Shelters",
-        backgroundColor: AppColors.yellow,
-        showBack: true, // if this screen should have a back button
+        isHome: false,
+        showBack: false, // if this screen should have a back button
         showNotification: true, // optional
       ),
       body: Column(
@@ -217,10 +217,6 @@ class _VetScreenState extends State<VetScreen> {
         ],
       ),
       backgroundColor: AppColors.yellow,
-      bottomNavigationBar: BottomNavBar(
-        currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
-      ),
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youppie/presentation/themes/colors.dart';
 import 'package:youppie/presentation/screens/comments/comments_screen.dart';
+import 'package:youppie/presentation/screens/profile/profile_screen.dart';
 
 const userid = 1;
 
@@ -78,12 +79,20 @@ class _PostCardState extends State<PostCard> {
             Row(
               children: [
                 // Profile picture
-                ClipOval(
-                  child: Image.asset(
-                    widget.userProfilePic,
-                    width: 50,
-                    height: 50,
-                    fit: BoxFit.cover, // make sure it fills the circle
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProfileScreen()),
+                    );
+                  },
+                  child: ClipOval(
+                    child: Image.asset(
+                      widget.userProfilePic,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover, // make sure it fills the circle
+                    ),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -269,16 +278,12 @@ class _PostCardState extends State<PostCard> {
                   widget.comments.toString(),
                   style: TextStyle(color: AppColors.black),
                 ),
-                const SizedBox(width: 25),
-                IconButton(
-                  onPressed: () {
-                    //navigate to share screen
-                  },
-                  icon: Icon(Icons.share_outlined, color: AppColors.green),
-                ),
+
                 const Spacer(),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _showContactOptions(context);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.green,
                     shape: RoundedRectangleBorder(
@@ -292,6 +297,162 @@ class _PostCardState extends State<PostCard> {
                 ),
               ],
             ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showContactOptions(BuildContext context) {
+    final phoneNumber = '+213 555 123 456';
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
+          ),
+        ),
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Handle indicator
+            Center(
+              child: Container(
+                width: 40,
+                height: 4,
+                margin: const EdgeInsets.only(bottom: 20),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+            ),
+
+            // Title
+            const Text(
+              'Contact Options',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 24),
+
+            // Call option
+            InkWell(
+              onTap: () {
+                // Add your call functionality here
+                Navigator.pop(context);
+              },
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFB8D4D4),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Icon(
+                        Icons.phone,
+                        color: Color(0xFF4A6B6B),
+                        size: 24,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Call',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.green,
+                            ),
+                          ),
+                          Text(
+                            phoneNumber,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey.shade600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Icon(Icons.chevron_right, color: Colors.grey.shade400),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            // WhatsApp option
+            InkWell(
+              onTap: () {
+                // Add your WhatsApp functionality here
+                Navigator.pop(context);
+              },
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFB8D4D4),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Icon(
+                        Icons.chat_bubble_outline,
+                        color: Color(0xFF4A6B6B),
+                        size: 24,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'WhatsApp',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.green,
+                            ),
+                          ),
+                          Text(
+                            phoneNumber,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey.shade600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Icon(Icons.chevron_right, color: Colors.grey.shade400),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
           ],
         ),
       ),

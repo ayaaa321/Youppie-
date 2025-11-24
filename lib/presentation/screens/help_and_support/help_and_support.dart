@@ -32,9 +32,14 @@ class HelpSupportScreen extends StatelessWidget {
         backgroundColor: bgColor,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: textColor, size: 28),
-          onPressed: () {},
+          icon: const Icon(Icons.arrow_back, color: primaryColor, size: 28),
+          onPressed: () {
+            Navigator.of(
+              context,
+            ).pop(); // This will return to the previous page (SettingsScreen)
+          },
         ),
+
         title: const Text(
           "Help & Support",
           style: TextStyle(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:youppie/presentation/themes/colors.dart';
 import 'package:youppie/routes.dart';
 import 'package:youppie/presentation/models/comment_model.dart';
+import 'package:youppie/presentation/screens/profile/profile_screen.dart';
 
 class CommentCard extends StatefulWidget {
   final CommentModel comment;
@@ -25,7 +26,8 @@ class CommentCard extends StatefulWidget {
   State<CommentCard> createState() => _CommentCardState();
 }
 
-class _CommentCardState extends State<CommentCard> with SingleTickerProviderStateMixin {
+class _CommentCardState extends State<CommentCard>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _animController;
   late final Animation<double> _scaleAnim;
   bool _isExpanded = false;
@@ -37,9 +39,10 @@ class _CommentCardState extends State<CommentCard> with SingleTickerProviderStat
       vsync: this,
       duration: const Duration(milliseconds: 200),
     );
-    _scaleAnim = Tween<double>(begin: 1.0, end: 1.22).animate(
-      CurvedAnimation(parent: _animController, curve: Curves.easeOut),
-    );
+    _scaleAnim = Tween<double>(
+      begin: 1.0,
+      end: 1.22,
+    ).animate(CurvedAnimation(parent: _animController, curve: Curves.easeOut));
   }
 
   @override
@@ -73,153 +76,164 @@ class _CommentCardState extends State<CommentCard> with SingleTickerProviderStat
   }
 
   // ---------- GUEST POPUP ----------
-void _showGuestPopup() {
-  showDialog(
-    context: context,
-    builder: (_) => Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      backgroundColor: AppColors.yellow,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/snoopy_login.png', height: 160),
-            const SizedBox(height: 4),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                Icon(
-                  Icons.warning_amber_rounded,
-                  color: AppColors.orange,
-                  size: 22,
-                ),
-                SizedBox(width: 6),
-                Text(
-                  'Login to see the full comment',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.black,
+  void _showGuestPopup() {
+    showDialog(
+      context: context,
+      builder: (_) => Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        backgroundColor: AppColors.yellow,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/snoopy_login.png', height: 160),
+              const SizedBox(height: 4),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Icon(
+                    Icons.warning_amber_rounded,
+                    color: AppColors.orange,
+                    size: 22,
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // ORANGE ElevatedButton
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.orange,
-                    foregroundColor: Colors.black,
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  SizedBox(width: 6),
+                  Text(
+                    'Login to see the full comment',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.black,
+                    ),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, signin);
-                  },
-                  child: const Text("Login"),
-                ),
-                const SizedBox(width: 8),
-                // ORANGE OutlinedButton
-                OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    side: const BorderSide(color: AppColors.orange),
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // ORANGE ElevatedButton
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.orange,
+                      foregroundColor: Colors.black,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 8,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.pushNamed(context, '/signin');
+                    },
+                    child: const Text("Login"),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, signup);
-                  },
-                  child: const Text("Register"),
-                ),
-              ],
-            ),
-          ],
+                  const SizedBox(width: 8),
+                  // ORANGE OutlinedButton
+                  OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      side: const BorderSide(color: AppColors.orange),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 8,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.pushNamed(context, signup);
+                    },
+                    child: const Text("Register"),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
-// ---------- LOGIN POPUP ----------
-void _showLoginDialog() {
-  showDialog(
-    context: context,
-    builder: (_) => Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      backgroundColor: AppColors.yellow,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/snoopy_login.png', height: 160),
-            const SizedBox(height: 4),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                Icon(
-                  Icons.warning_amber_rounded,
-                  color: AppColors.orange,
-                  size: 22,
-                ),
-                SizedBox(width: 6),
-                Text(
-                  'Please log in to continue',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.black,
+  // ---------- LOGIN POPUP ----------
+  void _showLoginDialog() {
+    showDialog(
+      context: context,
+      builder: (_) => Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        backgroundColor: AppColors.yellow,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/snoopy_login.png', height: 160),
+              const SizedBox(height: 4),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Icon(
+                    Icons.warning_amber_rounded,
+                    color: AppColors.orange,
+                    size: 22,
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // ORANGE ElevatedButton
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.orange,
-                    foregroundColor: Colors.black,
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  SizedBox(width: 6),
+                  Text(
+                    'Please log in to continue',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.black,
+                    ),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, signin);
-                  },
-                  child: const Text("Login"),
-                ),
-                const SizedBox(width: 8),
-                // ORANGE OutlinedButton
-                OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    side: const BorderSide(color: AppColors.orange),
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // ORANGE ElevatedButton
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.orange,
+                      foregroundColor: Colors.black,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 8,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.pushNamed(context, signin);
+                    },
+                    child: const Text("Login"),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, signup);
-                  },
-                  child: const Text("Register"),
-                ),
-              ],
-            ),
-          ],
+                  const SizedBox(width: 8),
+                  // ORANGE OutlinedButton
+                  OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      side: const BorderSide(color: AppColors.orange),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 8,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.pushNamed(context, signup);
+                    },
+                    child: const Text("Register"),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
-}
-
+    );
+  }
 
   // ----------- WIDGET BUILD -----------
 
@@ -235,8 +249,9 @@ void _showLoginDialog() {
       children: [
         GestureDetector(
           onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Profile screen not available yet")),
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfileScreen()),
             );
           },
           child: CircleAvatar(
@@ -244,7 +259,11 @@ void _showLoginDialog() {
             backgroundImage: _avatarProvider(c.avatar),
             backgroundColor: AppColors.green.withOpacity(0.12),
             child: c.avatar == null
-                ? Icon(Icons.person, color: AppColors.green, size: widget.isReply ? 16 : 20)
+                ? Icon(
+                    Icons.person,
+                    color: AppColors.green,
+                    size: widget.isReply ? 16 : 20,
+                  )
                 : null,
           ),
         ),
@@ -274,7 +293,10 @@ void _showLoginDialog() {
                     ),
                     Text(
                       c.timeAgo,
-                      style: const TextStyle(color: AppColors.lightGrey, fontSize: 12),
+                      style: const TextStyle(
+                        color: AppColors.lightGrey,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
@@ -335,11 +357,16 @@ void _showLoginDialog() {
                             child: Icon(
                               Icons.thumb_up,
                               size: 18,
-                              color: c.likedByMe ? AppColors.green : AppColors.lightGrey,
+                              color: c.likedByMe
+                                  ? AppColors.green
+                                  : AppColors.lightGrey,
                             ),
                           ),
                           const SizedBox(width: 6),
-                          Text('${c.likeCount}', style: const TextStyle(color: AppColors.lightGrey)),
+                          Text(
+                            '${c.likeCount}',
+                            style: const TextStyle(color: AppColors.lightGrey),
+                          ),
                         ],
                       ),
                     ),
@@ -348,9 +375,16 @@ void _showLoginDialog() {
                       onTap: widget.isGuest ? _showLoginDialog : widget.onReply,
                       child: Row(
                         children: const [
-                          Icon(Icons.reply, size: 18, color: AppColors.lightGrey),
+                          Icon(
+                            Icons.reply,
+                            size: 18,
+                            color: AppColors.lightGrey,
+                          ),
                           SizedBox(width: 6),
-                          Text("Reply", style: TextStyle(color: AppColors.lightGrey)),
+                          Text(
+                            "Reply",
+                            style: TextStyle(color: AppColors.lightGrey),
+                          ),
                         ],
                       ),
                     ),

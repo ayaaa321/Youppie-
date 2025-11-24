@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
-
-class AppColors {
-  AppColors._();
-  static const Color green = Color(0xFF5B928C);
-  static const Color yellow = Color(0xFFFFF8E1);
-  static const Color black = Color(0xFF3B3B3A);
-  static const Color white = Color.fromARGB(255, 255, 255, 255);
-  static const Color grey = Color.fromARGB(255, 83, 83, 83);
-  static const Color darkGreen = Color.fromARGB(255, 49, 76, 73);
-  static const Color lightGreen = Color(0xFFDEE9E8);
-  static const Color lightYellow = Color.fromARGB(255, 255, 254, 249);
-}
+import 'package:youppie/presentation/themes/colors.dart';
+import 'package:youppie/presentation/screens/home/feed_screen.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});
@@ -185,7 +175,24 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   ),
                 ],
               ),
+
               const SizedBox(height: 40),
+              TextButton(
+                onPressed: () {
+                  // Replace HomeScreen() with your actual main screen
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => FeedScreen()),
+                  );
+                },
+                child: Text(
+                  'Skip',
+                  style: TextStyle(
+                    color: AppColors.green,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

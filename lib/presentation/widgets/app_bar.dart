@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youppie/presentation/themes/colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -23,7 +24,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: backgroundColor ?? Theme.of(context).colorScheme.primary,
+      backgroundColor: AppColors.green,
       elevation: 10,
       centerTitle: true,
 
@@ -33,19 +34,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               onPressed: onBack ?? () => Navigator.pop(context),
             )
           : (isHome
-              ? Padding(
-                  padding: const EdgeInsets.only(left: 12),
-                  child: Image.asset(
-                    'assets/images/app_logo.png', 
-                    height: 30,
-                  ),
-                )
-              : null),
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 12),
+                    child: Image(
+                      image: AssetImage('assets/images/app_logo.png'),
+                      height: 30,
+                      width: 30,
+                    ),
+                  )
+                : null),
 
       title: Text(
         title,
         style: const TextStyle(
-          color: Color(0xFF3B3B3A),
+          color: AppColors.lightYellow,
           fontWeight: FontWeight.w600,
           fontSize: 20,
         ),
@@ -55,8 +57,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? [
               IconButton(
                 icon: const Icon(Icons.notifications),
-                onPressed: onNotification,
-              )
+                onPressed: () => {
+                  Navigator.pushNamed(context, '/notifications'),
+                },
+              ),
             ]
           : null,
     );

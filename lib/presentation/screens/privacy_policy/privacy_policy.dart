@@ -32,9 +32,14 @@ class PrivacyPolicyScreen extends StatelessWidget {
         backgroundColor: bgColor,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: primaryColor, size: 28),
-          onPressed: () {},
+          icon: const Icon(Icons.arrow_back, color: primaryColor, size: 28),
+          onPressed: () {
+            Navigator.of(
+              context,
+            ).pop(); // This will return to the previous page (SettingsScreen)
+          },
         ),
+
         centerTitle: true,
         title: Text(
           "Privacy Policy",
@@ -57,7 +62,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                 color: Colors.grey.shade300,
                 blurRadius: 4,
                 offset: const Offset(0, 2),
-              )
+              ),
             ],
           ),
           child: const Column(
@@ -65,28 +70,17 @@ class PrivacyPolicyScreen extends StatelessWidget {
             children: [
               Text(
                 "Last Updated: October 26, 2023",
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 13,
-                ),
+                style: TextStyle(color: Colors.black54, fontSize: 13),
               ),
               SizedBox(height: 20),
               Text(
                 "Welcome to Youppie! This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the application.",
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: 15,
-                  height: 1.5,
-                ),
+                style: TextStyle(color: textColor, fontSize: 15, height: 1.5),
               ),
               SectionTitle("Information We Collect"),
               Text(
                 "We may collect information about you in a variety of ways. The information we may collect via the Application includes:",
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: 15,
-                  height: 1.5,
-                ),
+                style: TextStyle(color: textColor, fontSize: 15, height: 1.5),
               ),
               BulletList([
                 "Personal Data: Personally identifiable information, such as your name, shipping address, email address, and telephone number, and demographic information, such as your age, gender, hometown, and interests, that you voluntarily give to us when you register with the Application.",
@@ -95,20 +89,12 @@ class PrivacyPolicyScreen extends StatelessWidget {
               SectionTitle("How We Use Your Information"),
               Text(
                 "Having accurate information about you permits us to provide you with a smooth, efficient, and customized experience. Specifically, we may use information collected about you via the Application to connect you with services, improve the app, and facilitate community features like adoption or lost pet posts.",
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: 15,
-                  height: 1.5,
-                ),
+                style: TextStyle(color: textColor, fontSize: 15, height: 1.5),
               ),
               SectionTitle("Contact Us"),
               Text(
                 "If you have questions or comments about this Privacy Policy, please contact us at:",
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: 15,
-                  height: 1.5,
-                ),
+                style: TextStyle(color: textColor, fontSize: 15, height: 1.5),
               ),
               SizedBox(height: 8),
               Text(
@@ -135,7 +121,10 @@ class PrivacyPolicyScreen extends StatelessWidget {
         onTap: (_) {},
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.local_hospital), label: "Vets"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.local_hospital),
+            label: "Vets",
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.groups), label: "Community"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
@@ -179,8 +168,10 @@ class BulletList extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("• ",
-                      style: TextStyle(color: Colors.black87, fontSize: 16)),
+                  const Text(
+                    "• ",
+                    style: TextStyle(color: Colors.black87, fontSize: 16),
+                  ),
                   Expanded(
                     child: Text(
                       item,

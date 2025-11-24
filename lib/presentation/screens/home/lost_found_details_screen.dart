@@ -20,6 +20,7 @@ class _LostFoundDetailsScreenState extends State<LostFoundDetailsScreen> {
       appBar: const CustomAppBar(
         title: "Lost & Found",
         backgroundColor: AppColors.yellow,
+        isHome: false,
         showBack: true, // if you want a back button
         showNotification: true, // or false if not needed
       ),
@@ -37,10 +38,6 @@ class _LostFoundDetailsScreenState extends State<LostFoundDetailsScreen> {
                 'https://www.davpetlovers.in/cdn/shop/files/golden-retriever-puppy_davpetlovers_1000x1000.jpg?v=1733299208',
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavBar(
-        currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
       ),
     );
   }

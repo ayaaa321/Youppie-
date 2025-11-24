@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
-
-class AppColors {
-  AppColors._();
-  static const Color green = Color(0xFF5B928C);
-  static const Color yellow = Color(0xFFFFF8E1);
-  static const Color black = Color(0xFF3B3B3A);
-  static const Color white = Color(0xFFFFFFFF);
-  static const Color grey = Color(0xFF535353);
-  static const Color darkGreen = Color(0xFF314C49);
-  static const Color lightGreen = Color(0xFFDEE9E8);
-  static const Color lightYellow = Color(0xFFFFFEF9);
-}
+import 'package:youppie/presentation/themes/colors.dart';
+import 'package:youppie/presentation/screens/home/feed_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -32,7 +22,7 @@ class LoginScreen extends StatelessWidget {
                   color: Colors.black12,
                   blurRadius: 10,
                   offset: const Offset(0, 4),
-                )
+                ),
               ],
             ),
             width: 380,
@@ -85,8 +75,10 @@ class LoginScreen extends StatelessWidget {
                   decoration: InputDecoration(
                     labelText: "Password",
                     hintText: "Enter your password",
-                    suffixIcon: Icon(Icons.visibility_outlined,
-                        color: AppColors.grey),
+                    suffixIcon: Icon(
+                      Icons.visibility_outlined,
+                      color: AppColors.grey,
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -167,7 +159,11 @@ class LoginScreen extends StatelessWidget {
                 // 🔘 Google button
                 OutlinedButton.icon(
                   onPressed: () {},
-                 icon: Image.asset("assets/images/google.png", width: 24, height: 24),
+                  icon: Image.asset(
+                    "assets/images/google.png",
+                    width: 24,
+                    height: 24,
+                  ),
 
                   label: const Text("Sign in with Google"),
                   style: OutlinedButton.styleFrom(
@@ -183,7 +179,11 @@ class LoginScreen extends StatelessWidget {
                 // 🔘 Facebook button
                 OutlinedButton.icon(
                   onPressed: () {},
-                  icon: Image.asset("assets/images/facebook.png", width: 24, height: 24),
+                  icon: Image.asset(
+                    "assets/images/facebook.png",
+                    width: 24,
+                    height: 24,
+                  ),
 
                   label: const Text("Sign in with Facebook"),
                   style: OutlinedButton.styleFrom(
@@ -216,6 +216,24 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+
+                // ***** Add the Skip button right below here *****
+                TextButton(
+                  onPressed: () {
+                    // Replace HomeScreen() with your actual main screen
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => FeedScreen()),
+                    );
+                  },
+                  child: Text(
+                    'Skip',
+                    style: TextStyle(
+                      color: AppColors.green,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ],
             ),

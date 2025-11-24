@@ -80,10 +80,6 @@ class _MyPetsScreenState extends State<MyPetsScreen> {
         backgroundColor: AppColors.darkGreen,
         child: const Icon(Icons.add, color: AppColors.lightYellow, size: 32),
       ),
-      bottomNavigationBar: BottomNavBar(
-        currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
-      ),
     );
   }
 }

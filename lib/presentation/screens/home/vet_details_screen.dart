@@ -20,7 +20,7 @@ class _VetDetailsScreenState extends State<VetDetailsScreen> {
       backgroundColor: AppColors.yellow,
       appBar: CustomAppBar(
         title: widget.vet.name,
-        backgroundColor: AppColors.yellow,
+        isHome: false,
         showBack: true, // if this screen should have a back button
         showNotification: true, // optional
       ),
@@ -237,7 +237,7 @@ class _VetDetailsScreenState extends State<VetDetailsScreen> {
                                 ),
                                 const SizedBox(width: 10),
                                 const Text(
-                                  "Get Directions",
+                                  "Get Location",
                                   style: TextStyle(
                                     fontSize: 18,
                                     color: AppColors.green,
@@ -337,10 +337,6 @@ class _VetDetailsScreenState extends State<VetDetailsScreen> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavBar(
-        currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
       ),
     );
   }

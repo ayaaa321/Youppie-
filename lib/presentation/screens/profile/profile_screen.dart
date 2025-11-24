@@ -1,17 +1,6 @@
 import 'package:flutter/material.dart';
-
-class AppColors {
-  AppColors._(); // private constructor
-
-  static const Color green = Color(0xFF5B928C); // Primary Accent
-  static const Color yellow = Color(0xFFFFF8E1); // Background
-  static const Color black = Color(0xFF3B3B3A); // Text (neutral)
-  static const Color white = Color(0xFFFFFFFF); // Main white
-  static const Color grey = Color(0xFF535353);
-  static const Color darkGreen = Color(0xFF314C49);
-  static const Color metaText = Color(0xFFA0A0A0);
-  static const Color accentRed = Color(0xFFE57373);
-}
+import 'package:youppie/presentation/themes/colors.dart';
+import 'dart:ui';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -78,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
-                                color: AppColors.black.withOpacity(0.05),
+                                color: AppColors.black.withValues(alpha: 0.05),
                                 blurRadius: 6,
                                 offset: const Offset(0, 4),
                               ),
@@ -128,7 +117,9 @@ class ProfileScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(999),
                               ),
                               elevation: 2,
-                              shadowColor: AppColors.green.withOpacity(0.3),
+                              shadowColor: AppColors.green.withValues(
+                                alpha: .3,
+                              ),
                               textStyle: const TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
@@ -147,7 +138,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   Divider(
                     thickness: 1,
-                    color: AppColors.black.withOpacity(0.1),
+                    color: AppColors.black.withValues(alpha: 0.1),
                   ),
                   // Menu Items
                   Padding(
@@ -159,7 +150,7 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         _ProfileMenuItem(
                           icon: Icons.grid_view,
-                          iconBg: AppColors.green.withOpacity(0.1),
+                          iconBg: AppColors.green.withValues(alpha: 0.1),
                           iconColor: AppColors.green,
                           title: 'My Posts',
                           onTap: () {},
@@ -168,7 +159,7 @@ class ProfileScreen extends StatelessWidget {
                         const SizedBox(height: 12),
                         _ProfileMenuItem(
                           icon: Icons.settings,
-                          iconBg: AppColors.green.withOpacity(0.1),
+                          iconBg: AppColors.green.withValues(alpha: 0.1),
                           iconColor: AppColors.green,
                           title: 'Settings',
                           onTap: () {},
@@ -177,7 +168,7 @@ class ProfileScreen extends StatelessWidget {
                         const SizedBox(height: 12),
                         _ProfileMenuItem(
                           icon: Icons.workspace_premium,
-                          iconBg: Colors.yellow.withOpacity(0.2),
+                          iconBg: Colors.yellow.withValues(alpha: 0.2),
                           iconColor: Colors.orange.shade800,
                           title: 'Premium badge',
                           onTap: () {},
@@ -186,10 +177,10 @@ class ProfileScreen extends StatelessWidget {
                         const SizedBox(height: 24),
                         _ProfileMenuItem(
                           icon: Icons.logout,
-                          iconBg: AppColors.accentRed.withOpacity(0.1),
-                          iconColor: AppColors.accentRed,
+                          iconBg: AppColors.red.withValues(alpha: .1),
+                          iconColor: AppColors.red,
                           title: 'Log out',
-                          titleColor: AppColors.accentRed,
+                          titleColor: AppColors.red,
                           onTap: () {},
                         ),
                       ],
@@ -204,7 +195,7 @@ class ProfileScreen extends StatelessWidget {
       // Bottom Navigation Bar
       bottomNavigationBar: BottomAppBar(
         elevation: 8,
-        color: AppColors.yellow.withOpacity(0.8),
+        color: AppColors.yellow.withValues(alpha: 0.8),
         child: SizedBox(
           height: 80,
           child: Row(
@@ -259,11 +250,11 @@ class _ProfileMenuItem extends StatelessWidget {
       child: Container(
         height: 64,
         decoration: BoxDecoration(
-          color: AppColors.white.withOpacity(0.5),
+          color: AppColors.white.withValues(alpha: 0.5),
           borderRadius: BorderRadius.circular(18),
           boxShadow: [
             BoxShadow(
-              color: AppColors.black.withOpacity(0.05),
+              color: AppColors.black.withValues(alpha: 0.05),
               blurRadius: 4,
               offset: const Offset(0, 2),
             ),
@@ -361,7 +352,7 @@ class _NavCenterButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(999),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.green.withOpacity(0.3),
+                  color: AppColors.green.withValues(alpha: 0.3),
                   blurRadius: 12,
                 ),
               ],

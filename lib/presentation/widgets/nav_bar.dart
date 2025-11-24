@@ -17,13 +17,13 @@ class BottomNavBar extends StatelessWidget {
     return Container(
       height: 64,
       decoration: BoxDecoration(
-        color: AppColors.white.withOpacity(0.9),
+        color: AppColors.white.withValues(alpha: 0.9),
         border: Border(
-          top: BorderSide(width: 1, color: Colors.grey.withOpacity(0.22)),
+          top: BorderSide(width: 1, color: Colors.grey.withValues(alpha: 0.22)),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 16,
             offset: const Offset(0, -2),
           ),
@@ -34,9 +34,17 @@ class BottomNavBar extends StatelessWidget {
         children: [
           _bottomNavItem(Icons.home, 'Home', 0),
           _bottomNavItem(Icons.travel_explore, 'Lost & Found', 1),
-          _centerNavAction(),
-          _bottomNavItem(Icons.pets_outlined, 'Vets & Shelters', 2),
-          _bottomNavItem(Icons.person, 'Profile', 3),
+          _bottomNavItem(
+            Icons.add_circle,
+            'Add Post',
+            2,
+          ), // FIXED: comma and better icon
+          _bottomNavItem(
+            Icons.pets_outlined,
+            'Vets & Shelters',
+            3,
+          ), // FIXED: index
+          _bottomNavItem(Icons.person, 'Profile', 4), // FIXED: index
         ],
       ),
     );
@@ -65,26 +73,6 @@ class BottomNavBar extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _centerNavAction() {
-    return Container(
-      width: 48,
-      height: 48,
-      margin: const EdgeInsets.only(bottom: 12),
-      decoration: BoxDecoration(
-        color: AppColors.green,
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.green.withOpacity(0.22),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: const Icon(Icons.add, color: Colors.white, size: 32),
     );
   }
 }

@@ -20,7 +20,6 @@ class _FeedScreenState extends State<FeedScreen> {
     return Scaffold(
       appBar: CustomAppBar(
         title: "Feed",
-        backgroundColor: AppColors.yellow,
         isHome: true, // if this is the main page
         showBack: false,
         showNotification: true,
@@ -81,11 +80,6 @@ class _FeedScreenState extends State<FeedScreen> {
       ),
 
       backgroundColor: AppColors.yellow,
-
-      bottomNavigationBar: BottomNavBar(
-        currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
-      ),
     );
   }
 }

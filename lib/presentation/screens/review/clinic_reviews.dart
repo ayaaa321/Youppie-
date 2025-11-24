@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:youppie/presentation/widgets/nav_bar.dart';
 import 'package:youppie/presentation/themes/colors.dart';
+import 'package:youppie/presentation/screens/review/review.dart';
+
 class VetReviewsPage extends StatelessWidget {
   const VetReviewsPage({super.key});
 
@@ -17,10 +19,7 @@ class VetReviewsPage extends StatelessWidget {
         ),
         title: const Text(
           "Dr. Feline's Vet Clinic",
-          style: TextStyle(
-            color: AppColors.black,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: AppColors.black, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         actions: [
@@ -33,7 +32,15 @@ class VetReviewsPage extends StatelessWidget {
 
       // Floating Review Button
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ReviewPage(),
+            ), // use your actual Write Review page widget class name
+          );
+        },
+
         backgroundColor: AppColors.green,
         label: const Text(
           "Write a Review",
@@ -143,7 +150,7 @@ class VetReviewsPage extends StatelessWidget {
             color: AppColors.lightGrey.withOpacity(0.1),
             spreadRadius: 1,
             blurRadius: 4,
-          )
+          ),
         ],
       ),
       child: Column(
@@ -164,8 +171,9 @@ class VetReviewsPage extends StatelessWidget {
                     Text(
                       userName,
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.black),
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.black,
+                      ),
                     ),
                     Text(
                       date,
@@ -188,8 +196,7 @@ class VetReviewsPage extends StatelessWidget {
               (index) => Icon(
                 Icons.star,
                 size: 20,
-                color:
-                    index < rating ? AppColors.green : Colors.grey.shade300,
+                color: index < rating ? AppColors.green : Colors.grey.shade300,
               ),
             ),
           ),
@@ -204,7 +211,7 @@ class VetReviewsPage extends StatelessWidget {
               fontSize: 14,
               height: 1.4,
             ),
-          )
+          ),
         ],
       ),
     );
